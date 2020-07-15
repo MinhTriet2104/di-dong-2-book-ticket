@@ -5,9 +5,75 @@
     android:orientation="vertical"
     android:background="@color/colorDarkPrimary">
 
+    <!-- Title   -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">Hello World</TextView>
+        android:layout_weight="1.5"
+        android:text="Hello World"
+        android:gravity="center"
+        android:textSize="24dp"/>
+
+    <!--  Tag  -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="Tech, Drama, Horror * 2020"
+        android:gravity="center_horizontal"/>
+
+    <!--  Duration and Room  -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="Hello World"
+        android:gravity="center_horizontal"/>
+
+    <!--  Seet Select  -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="11"
+        android:orientation="vertical">
+
+        <!-- Screen -->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"/>
+
+        <!-- Seet -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8"></LinearLayout>
+
+        <!--  Note Status  -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"></LinearLayout>
+
+    </LinearLayout>
+
+    <!--  Date Select  -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"></LinearLayout>
+
+    <!--  Hour Select -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"></LinearLayout>
+
+    <!--  Action Button  -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"></LinearLayout>
 
 </LinearLayout>
