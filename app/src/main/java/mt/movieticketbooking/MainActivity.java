@@ -10,6 +10,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Triet layout
-        setContentView(R.layout.book_ticket_layout);
+        setContentView(R.layout.home_book_ticket_layout);
     }
 }

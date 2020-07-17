@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorDarkPrimary"
+    android:paddingHorizontal="15dp"
+    android:paddingVertical="20dp"
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lblBack"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@string/lblTitleMovies"
+        android:gravity="center"
+        android:textSize="@dimen/lblTitleSize"
+        android:textColor="@color/colorWhite"
+        android:textStyle="bold"
+        android:id="@+id/lblTitleMovies"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:padding="5dp">
+        <Button
+            android:text="* 9.5/10"
+            style="@style/btnHeaderStyle"
+            >
+        </Button>
+
+        <Button
+            style="@style/btnHeaderStyle"
+            android:text="15+" />
+
+        <Button
+            android:text="action"
+            style="@style/btnHeaderStyle"
+            />
+        <Button
+            android:text="Sci-Fi"
+            style="@style/btnHeaderStyle"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:gravity="center"
+        >
+        <!--  icon calendar-->
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            android:src="@drawable/purple_calendar"
+            android:paddingHorizontal="5dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="May 10 - 15"
+            android:textColor="@color/colorWhite"
+            android:paddingHorizontal="10dp"/>
+
+        <!--  icon clock-->
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            android:src="@drawable/purple_clock"
+            android:paddingHorizontal="5dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3 : 02"
+            android:textColor="@color/colorWhite"
+            android:paddingHorizontal="10dp"/>
+
+        <!--  icon message-->
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            android:src="@drawable/purple_message"
+            android:paddingHorizontal="5dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2048"
+            android:textColor="@color/colorWhite"
+            android:paddingHorizontal="10dp"/>
+    </LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:src="@drawable/avenger_movies"
+        android:layout_marginVertical="5dp"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:text="Buy Tickets"
+        android:textAllCaps="false"
+        android:background="@drawable/gradient_purple_color"
+        />
+</LinearLayout>
