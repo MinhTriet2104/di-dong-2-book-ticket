@@ -471,7 +471,7 @@
             android:layout_weight="1"
             android:layout_marginRight="15dp"
             android:background="@color/colorDarkSecondary"
-            android:text="<-"/>
+            android:text="Back"/>
 
         <Button
             android:layout_width="0dp"
