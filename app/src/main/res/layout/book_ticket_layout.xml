@@ -2,35 +2,37 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorDarkPrimary"
     android:orientation="vertical"
-    android:background="@color/colorDarkPrimary">
+    android:paddingHorizontal="15dp"
+    android:paddingVertical="20dp">
 
     <!-- Title   -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1.5"
-        android:text="Hello World"
         android:gravity="center"
-        android:textSize="24dp"/>
+        android:text="Hello World"
+        android:textSize="24dp" />
 
     <!--  Tag  -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="Tech, Drama, Horror * 2020"
-        android:gravity="center_horizontal"/>
+        android:gravity="center_horizontal"
+        android:text="Tech, Drama, Horror * 2020" />
 
     <!--  Duration and Room  -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="Hello World"
-        android:gravity="center_horizontal"/>
+        android:gravity="center_horizontal"
+        android:text="Hello World" />
 
-    <!--  Seet Select  -->
+    <!--  Seat Select  -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -41,13 +43,399 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2"/>
+            android:layout_weight="2" />
 
-        <!-- Seet -->
+        <!-- Seat -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="8"></LinearLayout>
+            android:layout_weight="8"
+            android:orientation="horizontal">
+
+            <!-- Seat Number 1 - 4 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:orientation="vertical">
+
+                <!-- A  -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="1" />
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="2" />
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="3" />
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="4" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="1" />
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="2" />
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="3" />
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="4" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="1" />
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="2" />
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="3" />
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="4" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="1" />
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="2" />
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="3" />
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="4" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="1" />
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="2" />
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="3" />
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="4" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="1" />
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="2" />
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="3" />
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="4" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Seat Alpha -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="A"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="B" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="C" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="D" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="E" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="F" />
+
+            </LinearLayout>
+
+            <!-- Seat Number 5 - 8 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="5" />
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="6" />
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="7" />
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="8" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="5" />
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="6" />
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="7" />
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="8" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="5" />
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="6" />
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="7" />
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="8" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="5" />
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="6" />
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="7" />
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="8" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="5" />
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="6" />
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="7" />
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="8" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="5" />
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="6" />
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="7" />
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="8" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="5" />
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="6" />
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="7" />
+
+                    <CheckBox
+                        style="@style/checkboxStyle"
+                        android:text="8" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
 
         <!--  Note Status  -->
         <LinearLayout
@@ -74,6 +462,24 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"></LinearLayout>
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginRight="15dp"
+            android:background="@color/colorDarkSecondary"
+            android:text="<-"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:background="@drawable/gradient_purple_color"
+            android:text="Buy Now"/>
+
+    </LinearLayout>
 
 </LinearLayout>
