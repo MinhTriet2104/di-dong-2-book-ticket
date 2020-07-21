@@ -27,26 +27,31 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="0.5"
         android:orientation="horizontal"
-        android:padding="5dp">
-        <Button
+        android:padding="5dp"
+        android:weightSum="4">
+        <EditText
             android:text="* 9.5/10"
-            style="@style/btnHeaderStyle"
-            >
-        </Button>
-
-        <Button
-            style="@style/btnHeaderStyle"
-            android:text="15+" />
-
-        <Button
-            android:text="action"
-            style="@style/btnHeaderStyle"
+            style="@style/edtAboutMoviesStyle"
+            android:id="@+id/edtRate"
             />
-        <Button
+
+        <EditText
+            style="@style/edtAboutMoviesStyle"
+            android:text="15+"
+            android:id="@+id/edtYearsOld"
+            />
+
+        <EditText
+            android:text="action"
+            style="@style/edtAboutMoviesStyle"
+            android:id="@+id/movieType"
+            />
+        <EditText
             android:text="Sci-Fi"
-            style="@style/btnHeaderStyle"
+            style="@style/edtAboutMoviesStyle"
+            android:id="@+id/edtSC"
             />
     </LinearLayout>
     <LinearLayout
@@ -57,59 +62,48 @@
         >
         <!--  icon calendar-->
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="20dp"
+            style="@style/iconImageStyle"
             android:src="@drawable/purple_calendar"
-            android:paddingHorizontal="5dp"
             />
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/textIconStyle"
             android:text="May 10 - 15"
-            android:textColor="@color/colorWhite"
-            android:paddingHorizontal="10dp"/>
+            />
 
         <!--  icon clock-->
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="20dp"
+            style="@style/iconImageStyle"
             android:src="@drawable/purple_clock"
-            android:paddingHorizontal="5dp"
             />
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="3 : 02"
-            android:textColor="@color/colorWhite"
-            android:paddingHorizontal="10dp"/>
+            style="@style/textIconStyle"/>
 
         <!--  icon message-->
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="20dp"
+            style="@style/iconImageStyle"
             android:src="@drawable/purple_message"
-            android:paddingHorizontal="5dp"
             />
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="2048"
-            android:textColor="@color/colorWhite"
-            android:paddingHorizontal="10dp"/>
+            style="@style/textIconStyle"/>
     </LinearLayout>
+
     <ImageView
+        android:id="@+id/imgMovies"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="4"
-        android:src="@drawable/avenger_movies"
         android:layout_marginVertical="5dp"
-        />
+        android:layout_weight="4"
+        android:src="@drawable/avenger_movies" />
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.5"
-        android:text="Buy Tickets"
+        android:text="@string/btnBuy"
         android:textAllCaps="false"
-        android:background="@drawable/gradient_purple_color"
+        android:background="@drawable/btn_buy_ticket_pressed"
+        android:id="@+id/btnBuyTicket"
         />
 </LinearLayout>

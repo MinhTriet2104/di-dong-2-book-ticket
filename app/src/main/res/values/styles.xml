@@ -7,6 +7,7 @@
 <!--        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
         <item name="colorAccent">@color/colorDarkSecondary</item>
         <item name="android:textColor">@color/colorWhite</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -22,11 +23,26 @@
         <item name="android:textColor">@color/colorWhite</item>
         <item name="android:layout_gravity">center</item>
     </style>
-    <style name="btnHeaderStyle">
+    <style name="edtAboutMoviesStyle">
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@drawable/gradient_purple_color</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@drawable/btn_buy_ticket_pressed</item>
         <item name="android:textColor">@color/colorWhite</item>
         <item name="android:layout_margin">@dimen/btnHeaderMargin</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:editable">false</item>
+    </style>
+    <style name="iconImageStyle">
+        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_height">20dp</item>
+        <item name="android:paddingHorizontal">5dp</item>
+
+    </style>
+    <style name="textIconStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:paddingHorizontal">10dp</item>
     </style>
 </resources>

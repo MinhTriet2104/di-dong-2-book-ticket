@@ -471,7 +471,8 @@
             android:layout_weight="1"
             android:layout_marginRight="15dp"
             android:background="@color/colorDarkSecondary"
-            android:text="Back"/>
+            android:text="Back"
+            android:id="@+id/btnBack"/>
 
         <Button
             android:layout_width="0dp"
