@@ -35,7 +35,7 @@ public class HomeBookTicketActivity extends AppCompatActivity {
         btnBuyTicket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent.setClass(HomeBookTicketActivity.this, MainActivity.class);
+                intent.setClass(HomeBookTicketActivity.this, BookTicketActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
             }
@@ -44,7 +44,7 @@ public class HomeBookTicketActivity extends AppCompatActivity {
         imageMovie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent.setClass(HomeBookTicketActivity.this, MainActivity.class);
+                intent.setClass(HomeBookTicketActivity.this, BookTicketActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
             }

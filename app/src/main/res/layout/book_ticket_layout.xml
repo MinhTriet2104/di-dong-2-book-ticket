@@ -67,18 +67,22 @@
                     android:orientation="horizontal">
 
                     <CheckBox
+                        android:id="@+id/a1"
                         style="@style/checkboxStyle"
                         android:text="1" />
 
                     <CheckBox
+                        android:id="@+id/a2"
                         style="@style/checkboxStyle"
                         android:text="2" />
 
                     <CheckBox
+                        android:id="@+id/a3"
                         style="@style/checkboxStyle"
                         android:text="3" />
 
                     <CheckBox
+                        android:id="@+id/a4"
                         style="@style/checkboxStyle"
                         android:text="4" />
 
@@ -91,18 +95,22 @@
                     android:orientation="horizontal">
 
                     <CheckBox
+                        android:id="@+id/b1"
                         style="@style/checkboxStyle"
                         android:text="1" />
 
                     <CheckBox
+                        android:id="@+id/b2"
                         style="@style/checkboxStyle"
                         android:text="2" />
 
                     <CheckBox
+                        android:id="@+id/b3"
                         style="@style/checkboxStyle"
                         android:text="3" />
 
                     <CheckBox
+                        android:id="@+id/b4"
                         style="@style/checkboxStyle"
                         android:text="4" />
 
@@ -115,18 +123,22 @@
                     android:orientation="horizontal">
 
                     <CheckBox
+                        android:id="@+id/c1"
                         style="@style/checkboxStyle"
                         android:text="1" />
 
                     <CheckBox
+                        android:id="@+id/c2"
                         style="@style/checkboxStyle"
                         android:text="2" />
 
                     <CheckBox
+                        android:id="@+id/c3"
                         style="@style/checkboxStyle"
                         android:text="3" />
 
                     <CheckBox
+                        android:id="@+id/c4"
                         style="@style/checkboxStyle"
                         android:text="4" />
 
@@ -139,18 +151,22 @@
                     android:orientation="horizontal">
 
                     <CheckBox
+                        android:id="@+id/d1"
                         style="@style/checkboxStyle"
                         android:text="1" />
 
                     <CheckBox
+                        android:id="@+id/d2"
                         style="@style/checkboxStyle"
                         android:text="2" />
 
                     <CheckBox
+                        android:id="@+id/d3"
                         style="@style/checkboxStyle"
                         android:text="3" />
 
                     <CheckBox
+                        android:id="@+id/d4"
                         style="@style/checkboxStyle"
                         android:text="4" />
 
@@ -163,18 +179,22 @@
                     android:orientation="horizontal">
 
                     <CheckBox
+                        android:id="@+id/e1"
                         style="@style/checkboxStyle"
                         android:text="1" />
 
                     <CheckBox
+                        android:id="@+id/e2"
                         style="@style/checkboxStyle"
                         android:text="2" />
 
                     <CheckBox
+                        android:id="@+id/e3"
                         style="@style/checkboxStyle"
                         android:text="3" />
 
                     <CheckBox
+                        android:id="@+id/e4"
                         style="@style/checkboxStyle"
                         android:text="4" />
 
@@ -187,18 +207,22 @@
                     android:orientation="horizontal">
 
                     <CheckBox
+                        android:id="@+id/f1"
                         style="@style/checkboxStyle"
                         android:text="1" />
 
                     <CheckBox
+                        android:id="@+id/f2"
                         style="@style/checkboxStyle"
                         android:text="2" />
 
                     <CheckBox
+                        android:id="@+id/f3"
                         style="@style/checkboxStyle"
                         android:text="3" />
 
                     <CheckBox
+                        android:id="@+id/f4"
                         style="@style/checkboxStyle"
                         android:text="4" />
 
@@ -272,18 +296,22 @@
                     android:orientation="horizontal">
 
                     <CheckBox
+                        android:id="@+id/a5"
                         style="@style/checkboxStyle"
                         android:text="5" />
 
                     <CheckBox
+                        android:id="@+id/a6"
                         style="@style/checkboxStyle"
                         android:text="6" />
 
                     <CheckBox
+                        android:id="@+id/a7"
                         style="@style/checkboxStyle"
                         android:text="7" />
 
                     <CheckBox
+                        android:id="@+id/a8"
                         style="@style/checkboxStyle"
                         android:text="8" />
 
@@ -296,18 +324,22 @@
                     android:orientation="horizontal">
 
                     <CheckBox
+                        android:id="@+id/b5"
                         style="@style/checkboxStyle"
                         android:text="5" />
 
                     <CheckBox
+                        android:id="@+id/b6"
                         style="@style/checkboxStyle"
                         android:text="6" />
 
                     <CheckBox
+                        android:id="@+id/b7"
                         style="@style/checkboxStyle"
                         android:text="7" />
 
                     <CheckBox
+                        android:id="@+id/b8"
                         style="@style/checkboxStyle"
                         android:text="8" />
 
@@ -320,18 +352,22 @@
                     android:orientation="horizontal">
 
                     <CheckBox
+                        android:id="@+id/c5"
                         style="@style/checkboxStyle"
                         android:text="5" />
 
                     <CheckBox
+                        android:id="@+id/c6"
                         style="@style/checkboxStyle"
                         android:text="6" />
 
                     <CheckBox
+                        android:id="@+id/c7"
                         style="@style/checkboxStyle"
                         android:text="7" />
 
                     <CheckBox
+                        android:id="@+id/c8"
                         style="@style/checkboxStyle"
                         android:text="8" />
 
@@ -344,18 +380,22 @@
                     android:orientation="horizontal">
 
                     <CheckBox
+                        android:id="@+id/d5"
                         style="@style/checkboxStyle"
                         android:text="5" />
 
                     <CheckBox
+                        android:id="@+id/d6"
                         style="@style/checkboxStyle"
                         android:text="6" />
 
                     <CheckBox
+                        android:id="@+id/d7"
                         style="@style/checkboxStyle"
                         android:text="7" />
 
                     <CheckBox
+                        android:id="@+id/d8"
                         style="@style/checkboxStyle"
                         android:text="8" />
 
@@ -368,18 +408,22 @@
                     android:orientation="horizontal">
 
                     <CheckBox
+                        android:id="@+id/e5"
                         style="@style/checkboxStyle"
                         android:text="5" />
 
                     <CheckBox
+                        android:id="@+id/e6"
                         style="@style/checkboxStyle"
                         android:text="6" />
 
                     <CheckBox
+                        android:id="@+id/e7"
                         style="@style/checkboxStyle"
                         android:text="7" />
 
                     <CheckBox
+                        android:id="@+id/e8"
                         style="@style/checkboxStyle"
                         android:text="8" />
 
@@ -392,42 +436,22 @@
                     android:orientation="horizontal">
 
                     <CheckBox
+                        android:id="@+id/f5"
                         style="@style/checkboxStyle"
                         android:text="5" />
 
                     <CheckBox
+                        android:id="@+id/f6"
                         style="@style/checkboxStyle"
                         android:text="6" />
 
                     <CheckBox
+                        android:id="@+id/f7"
                         style="@style/checkboxStyle"
                         android:text="7" />
 
                     <CheckBox
-                        style="@style/checkboxStyle"
-                        android:text="8" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <CheckBox
-                        style="@style/checkboxStyle"
-                        android:text="5" />
-
-                    <CheckBox
-                        style="@style/checkboxStyle"
-                        android:text="6" />
-
-                    <CheckBox
-                        style="@style/checkboxStyle"
-                        android:text="7" />
-
-                    <CheckBox
+                        android:id="@+id/f8"
                         style="@style/checkboxStyle"
                         android:text="8" />
 
