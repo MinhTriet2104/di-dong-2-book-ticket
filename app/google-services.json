@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "536368905608",
+    "firebase_url": "https://book-ticket-2020.firebaseio.com",
+    "project_id": "book-ticket-2020",
+    "storage_bucket": "book-ticket-2020.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:536368905608:android:428d6326d2a7012c02ce3d",
+        "android_client_info": {
+          "package_name": "mt.movieticketbooking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "536368905608-fagup492ud8foviig6j7olnopoplrs3p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9KTyTFc4oFOLwemzbcW75oaf4dwbFi7M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "536368905608-fagup492ud8foviig6j7olnopoplrs3p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
