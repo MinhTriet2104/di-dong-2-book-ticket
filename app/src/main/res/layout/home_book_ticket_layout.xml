@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@color/colorDarkPrimary"
     android:paddingHorizontal="15dp"
-    android:paddingVertical="20dp"
-    >
+    android:paddingVertical="20dp">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -97,13 +96,19 @@
         android:layout_weight="4"
         android:src="@drawable/avenger_movies" />
 
-    <Button
+    <com.sanojpunchihewa.glowbutton.GlowButton
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_weight="0.5"
+        android:background="@drawable/gradient_purple_color"
         android:text="@string/btnBuy"
+        app:unpressedGlowSize="20dp"
+        app:pressedGlowSize="25dp"
+        app:cornerRadius="50dp"
+        app:glowColor="@color/colorPurple"
         android:textAllCaps="false"
-        android:background="@drawable/btn_buy_ticket_pressed"
+        android:textColor="@color/colorWhite"
         android:id="@+id/btnBuyTicket"
-        />
+        android:paddingHorizontal="20dp"
+     />
 </LinearLayout>
