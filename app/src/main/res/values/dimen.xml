@@ -2,4 +2,11 @@
 <resources>
     <dimen name="btnHeaderMargin">5dp</dimen>
     <dimen name="lblTitleSize">30dp</dimen>
+    <dimen name="txtTitle">30dp</dimen>
+    <dimen name="paddingTicketListView">15px</dimen>
+    <dimen name="txtPrice">25dp</dimen>
+    <dimen name="txtTitleItem">25dp</dimen>
+    <dimen name="cardViewMargin">5dp</dimen>
+    <dimen name="cardCornerRadius">4dp</dimen>
+    <dimen name="cardElevation">4dp</dimen>
 </resources>

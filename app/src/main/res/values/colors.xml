@@ -7,5 +7,5 @@
     <color name="colorDarkSecondary">#4E3E65</color>
     <color name="colorWhite">#FFF</color>
     <color name="colorPurple" >#800080</color>
-
+    <color name="colorPrice">#FFFF00</color>
 </resources>
