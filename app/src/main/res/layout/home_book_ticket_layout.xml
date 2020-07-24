@@ -88,6 +88,8 @@
             style="@style/textIconStyle"/>
     </LinearLayout>
 
+<!--    tao recyclerView-->
+
     <ImageView
         android:id="@+id/imgMovies"
         android:layout_width="match_parent"

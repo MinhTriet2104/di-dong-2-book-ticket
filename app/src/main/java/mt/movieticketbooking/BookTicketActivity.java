@@ -47,7 +47,8 @@ public class BookTicketActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
-                    Log.d("Test", task.getResult().getData().toString());
+                    Log.d("test ", task.getResult().getData().toString());
+                    Toast.makeText(BookTicketActivity.this, task.getResult().getData().toString(), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -57,6 +58,6 @@ public class BookTicketActivity extends AppCompatActivity {
         // Is the view now checked?
         boolean checked = ((CheckBox) v).isChecked();
         String buttonId = (v.getResources().getResourceName(v.getId())).split("/")[1];
-        Toast.makeText(this, buttonId, Toast.LENGTH_SHORT).show();
+        Toast.makeText(BookTicketActivity.this, buttonId+" ", Toast.LENGTH_SHORT).show();
     }
 }
