@@ -3,4 +3,5 @@
     <string name="lblBack">Marvel Night Series</string>
     <string name="lblTitleMovies">Avengers: Endgame</string>
     <string name="btnBuy">Buy Tickets</string>
+    <string name="payment">Confirm Payment</string>
 </resources>
