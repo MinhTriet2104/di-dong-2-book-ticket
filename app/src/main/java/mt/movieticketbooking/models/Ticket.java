@@ -5,27 +5,28 @@ public class Ticket {
     private int pictureTicketId;
     private String ticketDate;
     private String ticketTime;
-    private int ticketChair;
-    boolean isChecked = false;
+    private int ticketAmount;
+    private int ticketRoomId;
     private double ticketPrice;
+    private double ticketTotalPrice;
 
-
-    public Ticket(String tiketName, int pictureTicketId, String ticketDate, String ticketTime, int ticketChair, boolean isChecked, double ticketPrice) {
+    public Ticket(String tiketName, int pictureTicketId, String ticketDate, String ticketTime, int ticketAmount, int ticketRoomId, double ticketPrice) {
         this.tiketName = tiketName;
         this.pictureTicketId = pictureTicketId;
         this.ticketDate = ticketDate;
         this.ticketTime = ticketTime;
-        this.ticketChair = ticketChair;
-        this.isChecked = isChecked;
+        this.ticketAmount = ticketAmount;
+        this.ticketRoomId = ticketRoomId;
         this.ticketPrice = ticketPrice;
-    }
-
-    public boolean isChecked() {
-        return isChecked;
+        this.ticketTotalPrice = this.ticketAmount * this.ticketPrice;
     }
 
     public String getTiketName() {
         return tiketName;
+    }
+
+    public int getPictureTicketId() {
+        return pictureTicketId;
     }
 
     public String getTicketDate() {
@@ -36,24 +37,28 @@ public class Ticket {
         return ticketTime;
     }
 
-    public int getTicketChair() {
-        return ticketChair;
+    public int getTicketAmount() {
+        return ticketAmount;
     }
 
     public double getTicketPrice() {
         return ticketPrice;
     }
 
-    public int getIdPictureTicket() {
-        return pictureTicketId;
+    public double getTicketTotalPrice() {
+        return ticketTotalPrice;
     }
 
-    public void setChecked(boolean checked) {
-        isChecked = checked;
+    public int getTicketRoomId() {
+        return ticketRoomId;
     }
 
     public void setTiketName(String tiketName) {
         this.tiketName = tiketName;
+    }
+
+    public void setPictureTicketId(int pictureTicketId) {
+        this.pictureTicketId = pictureTicketId;
     }
 
     public void setTicketDate(String ticketDate) {
@@ -64,26 +69,19 @@ public class Ticket {
         this.ticketTime = ticketTime;
     }
 
-    public void setTicketChair(int ticketChair) {
-        this.ticketChair = ticketChair;
+    public void setTicketAmount(int ticketAmount) {
+        this.ticketAmount = ticketAmount;
     }
 
     public void setTicketPrice(double ticketPrice) {
         this.ticketPrice = ticketPrice;
     }
 
-    public void setPathPictureTicket(int pictureTicketId) {
-        this.pictureTicketId = pictureTicketId;
+    public void setTicketTotalPrice(double ticketTotalPrice) {
+        this.ticketTotalPrice = ticketTotalPrice;
     }
 
-    @Override
-    public String toString() {
-        return "Ticket{" +
-                "tiketName='" + tiketName + '\'' +
-                ", ticketDate='" + ticketDate + '\'' +
-                ", ticketTime='" + ticketTime + '\'' +
-                ", ticketChair=" + ticketChair +
-                ", ticketPrice=" + ticketPrice +
-                '}';
+    public void setTicketRoomId(int ticketRoomId) {
+        this.ticketRoomId = ticketRoomId;
     }
 }

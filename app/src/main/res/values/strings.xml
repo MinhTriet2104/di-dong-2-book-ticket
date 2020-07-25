@@ -4,4 +4,7 @@
     <string name="lblTitleMovies">Avengers: Endgame</string>
     <string name="btnBuy">Buy Tickets</string>
     <string name="payment">Confirm Payment</string>
+    <string name="price">Price :</string>
+    <string name="totalPrice">Total Price :</string>
+    <string name="lblCustomerInf">Customer Information</string>
 </resources>

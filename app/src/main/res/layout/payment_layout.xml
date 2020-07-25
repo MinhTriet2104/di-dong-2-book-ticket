@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorDarkPrimary"
+    android:paddingHorizontal="15dp"
+    android:paddingVertical="20dp"
+    >
+    <LinearLayout
+        style="@style/paymentLinearLayoutStyle"
+        android:gravity="center"
+        android:layout_weight="3">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/avenger_movies"/>
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/paymentLinearLayoutStyle"
+        android:layout_weight="6"
+        android:orientation="vertical"
+        android:weightSum="10">
+
+        <TextView
+            android:id="@+id/txtTicketName"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:textSize="@dimen/txtTitleItem"
+            android:text="@string/lblTitleMovies"
+            android:layout_weight="2" />
+
+        <LinearLayout
+            style="@style/paymentLinearLayoutStyle"
+            android:orientation="horizontal"
+            android:weightSum="12"
+            android:gravity="center"
+            android:layout_weight="1" >
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingHorizontal="5dp"
+                android:src="@drawable/purple_calendar" />
+            <TextView
+                android:id="@+id/txtTicketDate"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:gravity="center"
+                android:text="May 10 - 2020"
+                android:textColor="@color/colorWhite" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingHorizontal="5dp"
+                android:src="@drawable/purple_clock" />
+
+            <TextView
+                android:id="@+id/txtTicketTime"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2.5"
+                android:gravity="center"
+                android:text="3 : 02"
+                android:textColor="@color/colorWhite" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingHorizontal="5dp"
+                android:src="@drawable/purple_ticket_icon" />
+
+            <TextView
+                android:id="@+id/txtTicketAmount"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"
+                android:gravity="center"
+                android:text="2"
+                android:textColor="@color/colorWhite" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:weightSum="5"
+            android:layout_weight="5" >
+            <TextView
+                android:id="@+id/txtAddress"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center_vertical"
+                android:textSize="15dp"
+                android:text="Address: 5th Floor, Vincom Thu Duc Shopping Mall, 216 Vo Van Ngan, Binh Tho Ward, Thu Duc District ( Room 5 )"
+                android:layout_weight="2"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:textSize="19dp"
+                android:text="@string/lblCustomerInf"
+                android:layout_weight="1"/>
+            <LinearLayout
+                style="@style/paymentLinearLayoutStyle"
+                android:weightSum="3"
+                android:orientation="vertical"
+                android:layout_weight="2">
+                <TextView
+                    android:id="@+id/txtFullname"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:gravity="left|center"
+                    android:textSize="15dp"
+                    android:text="Full name: Lê Minh Khang"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:id="@+id/txtEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:gravity="left|center"
+                    android:textSize="15dp"
+                    android:text="Email: leminhkhang.tdc2018@gmail.com"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:id="@+id/txtPhoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:gravity="left|center"
+                    android:textSize="15dp"
+                    android:text="Phone: 0985293047"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/paymentLinearLayoutStyle"
+            android:layout_weight="1"
+            android:weightSum="3"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="left|center"
+                android:textSize="23dp"
+                android:text="@string/price"
+                android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/txtTicketPrice"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="left|center"
+                android:textColor="@color/colorPrice"
+                android:textSize="23dp"
+                android:text="50000 vnđ"
+                android:layout_weight="2"/>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/paymentLinearLayoutStyle"
+            android:layout_weight="1" >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="left|center"
+                android:textSize="23dp"
+                android:text="@string/totalPrice"
+                android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/txtTicketTotalPrice"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="left|center"
+                android:textColor="@color/colorPrice"
+                android:textSize="23dp"
+                android:text="100000 vnđ"
+                android:layout_weight="2"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnComfirmPayment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:text="@string/payment"
+        android:textAllCaps="false"
+        android:background="@drawable/gradient_purple_color"
+        />
+</LinearLayout>
