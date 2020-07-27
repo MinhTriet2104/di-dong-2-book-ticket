@@ -19,10 +19,13 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
+import java.util.ArrayList;
+
 import mt.movieticketbooking.models.Movie;
 
 public class BookTicketActivity extends AppCompatActivity {
     private Movie movie = new Movie();
+    private ArrayList<String> listSeatSelected = new ArrayList<>();
     private DocumentReference nDocRefMovie = FirebaseFirestore.getInstance().document("book-ticket/movie");
     private Button btnBack;
     private Button btnBuyNow;
@@ -40,6 +43,9 @@ public class BookTicketActivity extends AppCompatActivity {
         //get ID from layout
         btnBack = findViewById(R.id.btnBack);
         btnBuyNow = findViewById(R.id.btnBuyNow);
+        lblTitle = findViewById(R.id.movieTitle);
+        lblTag = findViewById(R.id.movieTag);
+        lblRoomAndDuration = findViewById(R.id.movieRoomAndDuration);
 
         //Set Event for btn Back
         btnBack.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +81,12 @@ public class BookTicketActivity extends AppCompatActivity {
         // Is the view now checked?
         boolean checked = ((CheckBox) v).isChecked();
         String buttonId = (v.getResources().getResourceName(v.getId())).split("/")[1];
-        Toast.makeText(BookTicketActivity.this, buttonId+" ", Toast.LENGTH_SHORT).show();
+        if (checked) {
+            listSeatSelected.add(buttonId);
+        } else {
+            listSeatSelected.remove(buttonId);
+        }
+        Toast.makeText(BookTicketActivity.this, listSeatSelected+"", Toast.LENGTH_SHORT).show();
+        Log.d("list", listSeatSelected+"");
     }
 }
