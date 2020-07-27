@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -18,10 +19,16 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
-public class BookTicketActivity extends AppCompatActivity {
+import mt.movieticketbooking.models.Movie;
 
+public class BookTicketActivity extends AppCompatActivity {
+    private Movie movie = new Movie();
     private DocumentReference nDocRefMovie = FirebaseFirestore.getInstance().document("book-ticket/movie");
     private Button btnBack;
+    private Button btnBuyNow;
+    private TextView lblTitle;
+    private TextView lblTag;
+    private TextView lblRoomAndDuration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +39,22 @@ public class BookTicketActivity extends AppCompatActivity {
 
         //get ID from layout
         btnBack = findViewById(R.id.btnBack);
+        btnBuyNow = findViewById(R.id.btnBuyNow);
 
         //Set Event for btn Back
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 intent.setClass(BookTicketActivity.this, HomeBookTicketActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(intent);
+            }
+        });
+
+        btnBuyNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent.setClass(BookTicketActivity.this, PaymentActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
             }
