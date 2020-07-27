@@ -1,6 +1,8 @@
 package mt.movieticketbooking;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -39,6 +41,11 @@ public class PaymentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         // Payment layout
         setContentView(R.layout.payment_layout);
+
+        // Get data from BookTicketActivity
+        Ticket ticket = (Ticket) getIntent().getSerializableExtra("ticket");
+        Log.d("ticket", ticket.getMovieName());
+
         //Setup view ticket
         txtTicketName = (TextView) findViewById(R.id.txtTicketName);
         txtTicketDate = (TextView) findViewById(R.id.txtTicketDate);
@@ -53,7 +60,7 @@ public class PaymentActivity extends AppCompatActivity {
         txtCustomerPhone = (TextView) findViewById(R.id.txtPhoneNumber);
 
         //hash new Ticket Model
-        ticket = new Ticket("Avenger: End Game", R.drawable.avenger_movies, "May 15 - 2020", "16 : 30", 3, 2, 70000);
+//        ticket = new Ticket("Avenger: End Game", R.drawable.avenger_movies, "May 15 - 2020", "16 : 30", 3, 2, 70000);
         //hash new Customer Model
         customer = new Customer("Khang Lê Minh", "khangleminh@gmail.com", "0985293047");
 
@@ -72,13 +79,13 @@ public class PaymentActivity extends AppCompatActivity {
     }
 
     private void bindTicket(){
-        txtTicketName.setText(ticket.getTiketName());
-        txtTicketDate.setText(ticket.getTicketDate());
-        txtTicketTime.setText(ticket.getTicketTime());
-        txtTicketAmount.setText(String.valueOf(ticket.getTicketAmount()));
-        txtAddressTicket.setText("Address: " + this.ADDRESS_CINE + " - Room " + ticket.getTicketRoomId());
-        txtTicketPrice.setText(String.valueOf(ticket.getTicketPrice()) + " vnđ");
-        txtTotalPrice.setText(String.valueOf(ticket.getTicketTotalPrice()) + " vnđ");
+//        txtTicketName.setText(ticket.getTiketName());
+//        txtTicketDate.setText(ticket.getTicketDate());
+//        txtTicketTime.setText(ticket.getTicketTime());
+//        txtTicketAmount.setText(String.valueOf(ticket.getTicketAmount()));
+//        txtAddressTicket.setText("Address: " + this.ADDRESS_CINE + " - Room " + ticket.getTicketRoomId());
+//        txtTicketPrice.setText(String.valueOf(ticket.getTicketPrice()) + " vnđ");
+//        txtTotalPrice.setText(String.valueOf(ticket.getTicketTotalPrice()) + " vnđ");
     }
 
     private void bindCustomer(){

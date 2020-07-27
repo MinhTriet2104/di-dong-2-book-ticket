@@ -8,26 +8,24 @@ public class Ticket implements Serializable {
     private String imageUrl;
     private String ticketDate;
     private String ticketTime;
-    private int ticketAmount;
     private String ticketRoom;
     private double ticketPrice;
     private ArrayList<String> listSeat;
 
     public Ticket() {}
 
-    public Ticket(String movieName, String imageUrl, String ticketDate, String ticketTime, int ticketAmount, String ticketRoom, double ticketPrice, ArrayList<String> listSeat) {
+    public Ticket(String movieName, String imageUrl, String ticketDate, String ticketTime, String ticketRoom, double ticketPrice, ArrayList<String> listSeat) {
         this.movieName = movieName;
         this.imageUrl = imageUrl;
         this.ticketDate = ticketDate;
         this.ticketTime = ticketTime;
-        this.ticketAmount = ticketAmount;
         this.ticketRoom = ticketRoom;
         this.ticketPrice = ticketPrice;
         this.listSeat = listSeat;
     }
 
     public double getTotalPrice() {
-        return this.ticketAmount * this.ticketPrice;
+        return this.ticketPrice * this.listSeat.size();
     }
 
     public String getMovieName() {
@@ -44,10 +42,6 @@ public class Ticket implements Serializable {
 
     public String getTicketTime() {
         return ticketTime;
-    }
-
-    public int getTicketAmount() {
-        return ticketAmount;
     }
 
     public String getTicketRoom() {

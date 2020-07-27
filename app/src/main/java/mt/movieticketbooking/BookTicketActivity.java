@@ -20,13 +20,22 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import mt.movieticketbooking.models.Movie;
+import mt.movieticketbooking.models.Ticket;
 
 public class BookTicketActivity extends AppCompatActivity {
     private Movie movie = new Movie();
     private ArrayList<String> listSeatSelected = new ArrayList<>();
-    private DocumentReference nDocRefMovie = FirebaseFirestore.getInstance().document("book-ticket/movie");
+    private String movieTitle;
+    private String room = "A1";
+    private String dateSelected = "20/08/2020";
+    private String timeSelected = "20:00";
+    private double price;
+    private String imageUrl;
+    private DocumentReference nDocRefMovie = FirebaseFirestore.getInstance().document("movies/aNwkXJ1HXiDT3fh4Qykx");
+
     private Button btnBack;
     private Button btnBuyNow;
     private TextView lblTitle;
@@ -62,6 +71,8 @@ public class BookTicketActivity extends AppCompatActivity {
             public void onClick(View v) {
                 intent.setClass(BookTicketActivity.this, PaymentActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                Ticket ticket = new Ticket(movieTitle, imageUrl, dateSelected, timeSelected, room, price, listSeatSelected);
+                intent.putExtra("ticket", ticket);
                 startActivity(intent);
             }
         });
@@ -70,8 +81,11 @@ public class BookTicketActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
-                    Log.d("test ", task.getResult().getData().toString());
-                    Toast.makeText(BookTicketActivity.this, task.getResult().getData().toString(), Toast.LENGTH_LONG).show();
+                    Log.d("triet ", task.getResult().getData().toString());
+                    Map<String, Object> data = task.getResult().getData();
+                    movieTitle = data.get("title").toString();
+                    price = Double.parseDouble(data.get("price").toString());
+                    imageUrl = data.get("imageUrl").toString();
                 }
             }
         });
@@ -87,6 +101,6 @@ public class BookTicketActivity extends AppCompatActivity {
             listSeatSelected.remove(buttonId);
         }
         Toast.makeText(BookTicketActivity.this, listSeatSelected+"", Toast.LENGTH_SHORT).show();
-        Log.d("list", listSeatSelected+"");
+        Log.d("seat", listSeatSelected+"");
     }
 }
