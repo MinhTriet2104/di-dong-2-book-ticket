@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -13,6 +14,7 @@
         android:gravity="center"
         android:layout_weight="3">
         <ImageView
+            android:id="@+id/imgMovie"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/avenger_movies"/>
@@ -31,7 +33,7 @@
             android:gravity="center"
             android:textSize="@dimen/txtTitleItem"
             android:text="@string/lblTitleMovies"
-            android:layout_weight="2" />
+            android:layout_weight="1.5" />
 
         <LinearLayout
             style="@style/paymentLinearLayoutStyle"
@@ -100,13 +102,20 @@
                 android:gravity="center_vertical"
                 android:textSize="15dp"
                 android:text="Address: 5th Floor, Vincom Thu Duc Shopping Mall, 216 Vo Van Ngan, Binh Tho Ward, Thu Duc District ( Room 5 )"
-                android:layout_weight="2"/>
+                android:layout_weight="1.75"/>
+            <TextView
+                android:id="@+id/ticketOrderTime"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:text="Order time: 12:26:18 27/07/2020"
+                android:layout_weight="0.5"
+                android:gravity="right"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:textSize="19dp"
                 android:text="@string/lblCustomerInf"
-                android:layout_weight="1"/>
+                android:layout_weight="0.75"/>
             <LinearLayout
                 style="@style/paymentLinearLayoutStyle"
                 android:weightSum="3"
@@ -184,12 +193,17 @@
         </LinearLayout>
     </LinearLayout>
 
-    <Button
+    <com.sanojpunchihewa.glowbutton.GlowButton
         android:id="@+id/btnComfirmPayment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.5"
+        android:layout_weight="1"
+        app:unpressedGlowSize="10dp"
+        app:pressedGlowSize="25dp"
+        app:cornerRadius="15dp"
+        app:glowColor="@color/colorPurple"
         android:text="@string/payment"
+        android:textSize="20dp"
         android:textAllCaps="false"
         android:background="@drawable/gradient_purple_color"
         />

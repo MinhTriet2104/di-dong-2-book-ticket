@@ -52,6 +52,14 @@ public class Ticket implements Serializable {
         return ticketPrice;
     }
 
+    public String getTicketListString(){
+        String result = "";
+        for(String str: listSeat){
+            result += str + " - ";
+        }
+        return result.substring(0, result.length() - 3);
+    }
+
     public ArrayList<String> getListSeat() {
         return listSeat;
     }
