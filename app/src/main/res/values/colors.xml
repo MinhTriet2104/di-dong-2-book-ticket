@@ -6,7 +6,7 @@
     <color name="colorDarkPrimary">#1D1726</color>
     <color name="colorDarkSecondary">#4E3E65</color>
     <color name="colorWhite">#FFF</color>
-    <color name="colorPurple" >#800080</color>
+    <color name="colorPurple" >#B820FF</color>
     <color name="colorPrice">#FFFF00</color>
     <color name="colorPayment">#28AEBC</color>
 </resources>
