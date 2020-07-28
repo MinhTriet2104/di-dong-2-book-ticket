@@ -2,6 +2,7 @@ package mt.movieticketbooking;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +11,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.gson.Gson;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -20,6 +23,8 @@ import mt.movieticketbooking.models.DownloadImageTask;
 import mt.movieticketbooking.models.Ticket;
 
 public class PaymentActivity extends AppCompatActivity {
+    public static String TICKET_CODE_REQUEST = "ticket";
+    public static String CUSTOMER_CODE_REQUEST = "customer";
     public static String ADDRESS_CINE = "5th Floor, Vincom Thu Duc Shopping Mall, 216 Vo Van Ngan, Binh Tho Ward, Thu Duc District";
     private ImageView imgMovie;
     private TextView txtTicketName;
@@ -52,8 +57,9 @@ public class PaymentActivity extends AppCompatActivity {
         // Payment layout
         setContentView(R.layout.payment_layout);
 
+        final Intent intent = getIntent();
         // Get data from BookTicketActivity
-        ticket = (Ticket) getIntent().getSerializableExtra("ticket");
+        ticket = (Ticket) intent.getSerializableExtra(TICKET_CODE_REQUEST);
         //Log.d("ticket", ticket.getMovieName());
 
         //Setup view ticket
@@ -74,8 +80,7 @@ public class PaymentActivity extends AppCompatActivity {
         btnComfirm = (Button) findViewById(R.id.btnComfirmPayment);
         //Set time now
         date = new Date();
-        txtTicketOrderTime.setText("Order time: " + formatterDate.format(date));
-
+        ticket.setOrderTime(date);
         //hash new Ticket Model
 //        ticket = new Ticket("Avenger: End Game", R.drawable.avenger_movies, "May 15 - 2020", "16 : 30", 3, 2, 70000);
         //hash new Customer Model
@@ -108,11 +113,15 @@ public class PaymentActivity extends AppCompatActivity {
         btnComfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(PaymentActivity.this, "Button Confirm", Toast.LENGTH_SHORT).show();
+                intent.setClass(PaymentActivity.this, ChoosePaymentMethodActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                Bundle bundleData = new Bundle();
+                bundleData.putString(TICKET_CODE_REQUEST, new Gson().toJson(ticket));
+                bundleData.putString(CUSTOMER_CODE_REQUEST, new Gson().toJson(customer));
+                intent.putExtras(bundleData);
+                startActivity(intent);
             }
         });
-
-
     }
 
     private void bindTicket(){
@@ -124,6 +133,7 @@ public class PaymentActivity extends AppCompatActivity {
         txtAddressTicket.setText("Address: " + this.ADDRESS_CINE + " - Room " + ticket.getTicketRoom());
         txtTicketPrice.setText(formatterPrice.format(ticket.getTicketPrice()) + " vnđ");
         txtTotalPrice.setText(formatterPrice.format(ticket.getTotalPrice()) + " vnđ");
+        txtTicketOrderTime.setText("Order time: " + formatterDate.format(date));
     }
 
     private void bindCustomer(){

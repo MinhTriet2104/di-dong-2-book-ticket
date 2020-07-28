@@ -2,6 +2,7 @@ package mt.movieticketbooking.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Ticket implements Serializable {
     private String movieName;
@@ -10,6 +11,7 @@ public class Ticket implements Serializable {
     private String ticketTime;
     private String ticketRoom;
     private double ticketPrice;
+    private Date orderTime;
     private ArrayList<String> listSeat;
 
     public Ticket() {}
@@ -22,6 +24,10 @@ public class Ticket implements Serializable {
         this.ticketRoom = ticketRoom;
         this.ticketPrice = ticketPrice;
         this.listSeat = listSeat;
+    }
+
+    public Date getOrderTime() {
+        return orderTime;
     }
 
     public double getTotalPrice() {
@@ -62,5 +68,37 @@ public class Ticket implements Serializable {
 
     public ArrayList<String> getListSeat() {
         return listSeat;
+    }
+
+    public void setMovieName(String movieName) {
+        this.movieName = movieName;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public void setTicketDate(String ticketDate) {
+        this.ticketDate = ticketDate;
+    }
+
+    public void setTicketTime(String ticketTime) {
+        this.ticketTime = ticketTime;
+    }
+
+    public void setTicketRoom(String ticketRoom) {
+        this.ticketRoom = ticketRoom;
+    }
+
+    public void setTicketPrice(double ticketPrice) {
+        this.ticketPrice = ticketPrice;
+    }
+
+    public void setOrderTime(Date orderTime) {
+        this.orderTime = orderTime;
+    }
+
+    public void setListSeat(ArrayList<String> listSeat) {
+        this.listSeat = listSeat;
     }
 }

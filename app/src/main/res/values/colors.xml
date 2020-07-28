@@ -8,4 +8,5 @@
     <color name="colorWhite">#FFF</color>
     <color name="colorPurple" >#800080</color>
     <color name="colorPrice">#FFFF00</color>
+    <color name="colorPayment">#28AEBC</color>
 </resources>

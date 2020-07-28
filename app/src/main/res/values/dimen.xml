@@ -9,4 +9,6 @@
     <dimen name="cardViewMargin">5dp</dimen>
     <dimen name="cardCornerRadius">4dp</dimen>
     <dimen name="cardElevation">4dp</dimen>
+    <dimen name="lblChoosePayment">25dp</dimen>
+
 </resources>

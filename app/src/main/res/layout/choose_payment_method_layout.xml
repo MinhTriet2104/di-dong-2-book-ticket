@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorDarkPrimary"
+    android:paddingHorizontal="15dp"
+    android:paddingVertical="20dp"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@string/lblChoosePaymentMethod"
+        android:gravity="center"
+        android:textSize="@dimen/lblChoosePayment"
+        android:textColor="@color/colorWhite"
+        android:textStyle="bold"
+        android:id="@+id/lblTitleMovies"
+        />
+
+    <LinearLayout
+        style="@style/paymentLinearLayoutStyle"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_weight="6">
+
+        <LinearLayout
+            style="@style/paymentLinearLayoutStyle"
+            android:layout_weight="3.75"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/ckbPayment1"
+                    android:checked="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/colorPayment"
+                    android:paddingLeft="15dp"
+                    android:text="@string/txtPaymentMethod1"
+                    android:textSize="25dp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/popupPayment1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="15dp"
+                android:text="@string/notePayment1"
+                android:textSize="20dp"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/ckbPayment2"
+                    android:checked="false"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="15dp"
+                    android:textColor="@color/colorPayment"
+                    android:text="@string/txtPaymentMethod2"
+                    android:textSize="25dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/popupInfoCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="10">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:src="@drawable/credit_card_icon" />
+
+                    <EditText
+                        android:id="@+id/edtCardNumber"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="9"
+                        android:hint="@string/edtCardNumberHint"
+                        android:inputType="number"
+                        android:maxLength="12"
+                        android:paddingLeft="20dp"
+                        android:textColor="@color/colorWhite" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="10">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:src="@drawable/password_card_icon" />
+
+                    <EditText
+                        android:id="@+id/edtCardPassword"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="9"
+                        android:hint="@string/edtCardNumberHint"
+                        android:inputType="numberPassword"
+                        android:maxLength="6"
+                        android:paddingLeft="20dp"
+                        android:textColor="@color/colorWhite" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:weightSum="4"
+                    android:layout_height="60dp">
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/paypal"/>
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/credit_card_visa"/>
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/mastercard"/>
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/maestro"/>
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/paymentLinearLayoutStyle"
+            android:orientation="vertical"
+            android:layout_weight="1.5" >
+            <TextView
+                android:id="@+id/ticketPaymentTime"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:text="Order time: 12:26:18 27/07/2020"
+                android:layout_weight="0.75"
+                android:gravity="right|center"/>
+            <TextView
+                android:id="@+id/txtTicketNameMovie"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="left|center"
+                android:textSize="15dp"
+                android:text="Movie name: Avengers: Endgame"
+                android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/txtInfoCustomer"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="left|center"
+                android:textSize="15dp"
+                android:text="Information: Lê Minh Khang - 0985293047"
+                android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/txtPaymentMethod"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="left|center"
+                android:textSize="15dp"
+                android:text="Payment method: Buy tickets at the counter"
+                android:layout_weight="1"/>
+        </LinearLayout>
+        <LinearLayout
+            style="@style/paymentLinearLayoutStyle"
+            android:layout_weight="0.5" >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="left|center"
+                android:textSize="23dp"
+                android:text="@string/totalPrice"
+                android:layout_weight="1.5"/>
+            <TextView
+                android:id="@+id/txtPaymentPrice"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="left|center"
+                android:textColor="@color/colorPrice"
+                android:textSize="23dp"
+                android:text="100000 vnđ"
+                android:layout_weight="2"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <com.sanojpunchihewa.glowbutton.GlowButton
+        android:id="@+id/btnCompletePayment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:unpressedGlowSize="10dp"
+        app:pressedGlowSize="25dp"
+        app:cornerRadius="50dp"
+        app:glowColor="@color/colorPurple"
+        android:text="@string/btnCompletePayment"
+        android:textSize="20dp"
+        android:textAllCaps="false"
+        android:background="@drawable/gradient_purple_color"
+        />
+</LinearLayout>
