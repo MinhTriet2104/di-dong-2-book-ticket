@@ -2,6 +2,8 @@ package mt.movieticketbooking;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,13 +23,16 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Vector;
 
+import mt.movieticketbooking.adapters.DateTimeAdapter;
 import mt.movieticketbooking.models.Movie;
 import mt.movieticketbooking.models.Ticket;
 
 public class BookTicketActivity extends AppCompatActivity {
     private Movie movie = new Movie();
     private ArrayList<String> listSeatSelected = new ArrayList<>();
+    private Vector<String> dateData = new Vector<>();
     private String movieTitle;
     private String room = "A1";
     private String dateSelected = "20/08/2020";
@@ -36,6 +41,7 @@ public class BookTicketActivity extends AppCompatActivity {
     private String imageUrl;
     private DocumentReference nDocRefMovie = FirebaseFirestore.getInstance().document("movies/aNwkXJ1HXiDT3fh4Qykx");
 
+    private RecyclerView recyclerView;
     private Button btnBack;
     private Button btnBuyNow;
     private TextView lblTitle;
@@ -55,6 +61,21 @@ public class BookTicketActivity extends AppCompatActivity {
         lblTitle = findViewById(R.id.movieTitle);
         lblTag = findViewById(R.id.movieTag);
         lblRoomAndDuration = findViewById(R.id.movieRoomAndDuration);
+
+        dateData.add("20/08");
+        dateData.add("23/08");
+        dateData.add("26/08");
+        dateData.add("27/08");
+        dateData.add("02/09");
+        dateData.add("05/09");
+
+        recyclerView = findViewById(R.id.movieDate);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+
+        recyclerView.setLayoutManager(layoutManager);
+        DateTimeAdapter adapter = new DateTimeAdapter(dateData);
+        recyclerView.setAdapter(adapter);
 
         //Set Event for btn Back
         btnBack.setOnClickListener(new View.OnClickListener() {

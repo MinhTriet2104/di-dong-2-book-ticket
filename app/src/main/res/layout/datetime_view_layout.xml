@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@color/colorDarkPrimary"
+    android:layout_marginRight="20dp"
+    android:gravity="center_horizontal">
+
+    <me.rishabhkhanna.customtogglebutton.CustomToggleButton
+        android:id="@+id/dateText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:checkedColor="@color/colorPurple"
+        app:checkedTextColor="@color/colorWhite"
+        app:uncheckedTextColor="@color/colorWhite"
+        app:uncheckedColor="@color/colorDarkSecondary"
+        app:radius="10dp"
+        android:textOn="21/04"
+        android:textOff="21/04"
+        ></me.rishabhkhanna.customtogglebutton.CustomToggleButton>
+
+</LinearLayout>
