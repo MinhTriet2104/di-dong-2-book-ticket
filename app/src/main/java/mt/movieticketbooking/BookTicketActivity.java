@@ -34,10 +34,11 @@ public class BookTicketActivity extends AppCompatActivity {
     private Movie movie = new Movie();
     private ArrayList<String> listSeatSelected = new ArrayList<>();
     private Vector<MyDateTimeData> dateData = new Vector<>();
+    private Vector<MyDateTimeData> timeData = new Vector<>();
     private String movieTitle;
     private String room = "A1";
-    private String dateSelected = "20/08/2020";
-    private String timeSelected = "20:00";
+    public static String dateSelected = "";
+    public static String timeSelected = "";
     private String strCategories = "";
     private String duration;
     private double price;
@@ -73,6 +74,13 @@ public class BookTicketActivity extends AppCompatActivity {
         dateData.add(new MyDateTimeData("02/09"));
         dateData.add(new MyDateTimeData("05/09"));
 
+        timeData.add(new MyDateTimeData("9:00"));
+        timeData.add(new MyDateTimeData("10:30"));
+        timeData.add(new MyDateTimeData("13:00"));
+        timeData.add(new MyDateTimeData("17:15"));
+        timeData.add(new MyDateTimeData("20:00"));
+        timeData.add(new MyDateTimeData("22:00"));
+
         recyclerViewDate = findViewById(R.id.movieDate);
         recyclerViewTime = findViewById(R.id.movieTime);
 
@@ -85,7 +93,7 @@ public class BookTicketActivity extends AppCompatActivity {
         recyclerViewTime.setLayoutManager(layoutManagerTime);
 
         DateTimeAdapter adapterDate = new DateTimeAdapter(dateData);
-        DateTimeAdapter adapterTime = new DateTimeAdapter(dateData);
+        DateTimeAdapter adapterTime = new DateTimeAdapter(timeData);
         recyclerViewDate.setAdapter(adapterDate);
         recyclerViewTime.setAdapter(adapterTime);
 
@@ -102,6 +110,19 @@ public class BookTicketActivity extends AppCompatActivity {
         btnBuyNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // return condition
+                if (listSeatSelected.size() == 0) {
+                    Toast.makeText(BookTicketActivity.this, "Please Select Your Seat!", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (dateSelected.equals("")) {
+                    Toast.makeText(BookTicketActivity.this, "Please Select a Date!", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (timeSelected.equals("")) {
+                    Toast.makeText(BookTicketActivity.this, "Please Select a Time!", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 intent.setClass(BookTicketActivity.this, PaymentActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 Ticket ticket = new Ticket(movieTitle, imageUrl, dateSelected, timeSelected, room, price, listSeatSelected);

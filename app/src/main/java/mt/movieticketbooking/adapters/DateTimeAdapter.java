@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.Vector;
 
+import mt.movieticketbooking.BookTicketActivity;
 import mt.movieticketbooking.R;
 import mt.movieticketbooking.models.MyDateTimeData;
 
@@ -56,6 +57,11 @@ public class DateTimeAdapter extends RecyclerView.Adapter<DateTimeAdapter.MyView
                     date.selected = false;
                 }
                 myDateTimeData.selected = true;
+                if (myDateTimeData.text.indexOf("/") != -1) {
+                    BookTicketActivity.dateSelected = myDateTimeData.text;
+                } else {
+                    BookTicketActivity.timeSelected = myDateTimeData.text;
+                }
                 notifyDataSetChanged();
             }
         });
