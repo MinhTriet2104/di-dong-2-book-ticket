@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="@color/colorDarkPrimary"
     android:layout_marginRight="20dp"
-    android:gravity="center_horizontal">
+    android:gravity="center_horizontal"
+    android:layout_marginBottom="10dp">
 
     <me.rishabhkhanna.customtogglebutton.CustomToggleButton
         android:id="@+id/dateText"

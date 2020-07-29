@@ -37,11 +37,14 @@ public class BookTicketActivity extends AppCompatActivity {
     private String room = "A1";
     private String dateSelected = "20/08/2020";
     private String timeSelected = "20:00";
+    private String strCategories = "";
+    private String duration;
     private double price;
     private String imageUrl;
     private DocumentReference nDocRefMovie = FirebaseFirestore.getInstance().document("movies/aNwkXJ1HXiDT3fh4Qykx");
 
-    private RecyclerView recyclerView;
+    private RecyclerView recyclerViewDate;
+    private RecyclerView recyclerViewTime;
     private Button btnBack;
     private Button btnBuyNow;
     private TextView lblTitle;
@@ -69,13 +72,21 @@ public class BookTicketActivity extends AppCompatActivity {
         dateData.add("02/09");
         dateData.add("05/09");
 
-        recyclerView = findViewById(R.id.movieDate);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerViewDate = findViewById(R.id.movieDate);
+        recyclerViewTime = findViewById(R.id.movieTime);
 
-        recyclerView.setLayoutManager(layoutManager);
-        DateTimeAdapter adapter = new DateTimeAdapter(dateData);
-        recyclerView.setAdapter(adapter);
+        LinearLayoutManager layoutManagerDate = new LinearLayoutManager(this);
+        LinearLayoutManager layoutManagerTime = new LinearLayoutManager(this);
+        layoutManagerDate.setOrientation(LinearLayoutManager.HORIZONTAL);
+        layoutManagerTime.setOrientation(LinearLayoutManager.HORIZONTAL);
+
+        recyclerViewDate.setLayoutManager(layoutManagerDate);
+        recyclerViewTime.setLayoutManager(layoutManagerTime);
+
+        DateTimeAdapter adapterDate = new DateTimeAdapter(dateData);
+        DateTimeAdapter adapterTime = new DateTimeAdapter(dateData);
+        recyclerViewDate.setAdapter(adapterDate);
+        recyclerViewTime.setAdapter(adapterTime);
 
         //Set Event for btn Back
         btnBack.setOnClickListener(new View.OnClickListener() {
@@ -107,6 +118,19 @@ public class BookTicketActivity extends AppCompatActivity {
                     movieTitle = data.get("title").toString();
                     price = Double.parseDouble(data.get("price").toString());
                     imageUrl = data.get("imageUrl").toString();
+//                    Map<String, Object> roomData = data.get("rooms");
+//                    room = roomData.get("name").toString();
+                    int hours = Integer.parseInt(data.get("duration").toString()) / 60;
+                    int minutes = Integer.parseInt(data.get("duration").toString()) % 60;
+                    duration = String.format("%d:%02d", hours, minutes);
+                    ArrayList<String> categories = (ArrayList<String>) data.get("categories");
+                    for (String category : categories) {
+                        strCategories += category + ", ";
+                    }
+                    strCategories = strCategories.substring(0, strCategories.length() - 2);
+                    lblTitle.setText(movieTitle);
+                    lblTag.setText(strCategories);
+                    lblRoomAndDuration.setText(room + " - " + duration);
                 }
             }
         });
