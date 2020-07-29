@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +27,7 @@ public class PaymentActivity extends AppCompatActivity {
     public static String TICKET_CODE_REQUEST = "ticket";
     public static String CUSTOMER_CODE_REQUEST = "customer";
     public static String ADDRESS_CINE = "5th Floor, Vincom Thu Duc Shopping Mall, 216 Vo Van Ngan, Binh Tho Ward, Thu Duc District";
+    //Ticket
     private ImageView imgMovie;
     private TextView txtTicketName;
     private TextView txtTicketDate;
@@ -34,11 +36,14 @@ public class PaymentActivity extends AppCompatActivity {
     private TextView txtAddressTicket;
     private TextView txtTicketPrice;
     private TextView txtTotalPrice;
-    private TextView txtCustomerName;
-    private TextView txtCustomerEmail;
-    private TextView txtCustomerPhone;
     private TextView txtTicketOrderTime;
-    private Button btnComfirm;
+    //Customer
+    private EditText edtCustomerName;
+    private EditText edtCustomerPhone;
+    private TextView txtAlertCustomer;
+    //Button
+    private Button btnConfirm;
+    private Button btBackConfirm;
 
     //Models
     private Ticket ticket;
@@ -73,22 +78,15 @@ public class PaymentActivity extends AppCompatActivity {
         txtTotalPrice = (TextView) findViewById(R.id.txtTicketTotalPrice);
         txtTicketOrderTime = (TextView) findViewById(R.id.ticketOrderTime);
         //Setup view customer
-        txtCustomerName = (TextView) findViewById(R.id.txtFullname);
-        txtCustomerEmail = (TextView) findViewById(R.id.txtEmail);
-        txtCustomerPhone = (TextView) findViewById(R.id.txtPhoneNumber);
+        edtCustomerName = (EditText) findViewById(R.id.edtCustomerName);
+        edtCustomerPhone = (EditText) findViewById(R.id.edtCustomerPhone);
+        txtAlertCustomer = (TextView) findViewById(R.id.txtCustomerAlert);
         //Btn confirm
-        btnComfirm = (Button) findViewById(R.id.btnComfirmPayment);
-        //Set time now
-        date = new Date();
-        ticket.setOrderTime(date);
-        //hash new Ticket Model
-//        ticket = new Ticket("Avenger: End Game", R.drawable.avenger_movies, "May 15 - 2020", "16 : 30", 3, 2, 70000);
-        //hash new Customer Model
-        customer = new Customer("Khang Lê Minh", "khangleminh@gmail.com", "0985293047");
+        btnConfirm = (Button) findViewById(R.id.btnConfirmTickets);
+        btBackConfirm = (Button) findViewById(R.id.btnBackConfirm);
 
         //Set data
-        bindTicket();
-        bindCustomer();
+        setupTicket();
 
 
         txtTicketAmount.setOnClickListener(new View.OnClickListener() {
@@ -110,21 +108,38 @@ public class PaymentActivity extends AppCompatActivity {
             }
         });
 
-        btnComfirm.setOnClickListener(new View.OnClickListener() {
+        btBackConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent.setClass(PaymentActivity.this, ChoosePaymentMethodActivity.class);
+                intent.setClass(PaymentActivity.this, BookTicketActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                Bundle bundleData = new Bundle();
-                bundleData.putString(TICKET_CODE_REQUEST, new Gson().toJson(ticket));
-                bundleData.putString(CUSTOMER_CODE_REQUEST, new Gson().toJson(customer));
-                intent.putExtras(bundleData);
                 startActivity(intent);
+            }
+        });
+
+        btnConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String customerName = String.valueOf(edtCustomerName.getText()).trim();
+                String customerPhone = String.valueOf(edtCustomerPhone.getText()).trim();
+                if(customerName.isEmpty() || customerPhone.isEmpty()){
+                    txtAlertCustomer.setVisibility(View.VISIBLE);
+                }else{
+                    txtAlertCustomer.setVisibility(View.INVISIBLE);
+                    customer = new Customer(customerName, customerPhone);
+                    intent.setClass(PaymentActivity.this, ChoosePaymentMethodActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    Bundle bundleData = new Bundle();
+                    bundleData.putString(TICKET_CODE_REQUEST, new Gson().toJson(ticket));
+                    bundleData.putString(CUSTOMER_CODE_REQUEST, new Gson().toJson(customer));
+                    intent.putExtras(bundleData);
+                    startActivity(intent);
+                }
             }
         });
     }
 
-    private void bindTicket(){
+    private void setupTicket(){
         new DownloadImageTask(imgMovie).execute(ticket.getImageUrl());
         txtTicketName.setText(ticket.getMovieName());
         txtTicketDate.setText(ticket.getTicketDate());
@@ -133,14 +148,7 @@ public class PaymentActivity extends AppCompatActivity {
         txtAddressTicket.setText("Address: " + this.ADDRESS_CINE + " - Room " + ticket.getTicketRoom());
         txtTicketPrice.setText(formatterPrice.format(ticket.getTicketPrice()) + " vnđ");
         txtTotalPrice.setText(formatterPrice.format(ticket.getTotalPrice()) + " vnđ");
-        txtTicketOrderTime.setText("Order time: " + formatterDate.format(date));
+        txtTicketOrderTime.setText("Order time: " + formatterDate.format(ticket.getOrderTime()));
     }
-
-    private void bindCustomer(){
-        txtCustomerName.setText("Full name: " + customer.getFullName());
-        txtCustomerEmail.setText("Email: " + customer.getEmail());
-        txtCustomerPhone.setText("Phone: " + customer.getPhoneNumber());
-    }
-
 
 }

@@ -3,15 +3,24 @@
     <string name="lblBack">Marvel Night Series</string>
     <string name="lblTitleMovies">Avengers: Endgame</string>
     <string name="btnBuy">Buy Tickets</string>
-    <string name="payment">Confirm Payment</string>
+    <string name="btnTicket">Confirm of Tickets</string>
     <string name="price">Price :</string>
     <string name="totalPrice">Total Price :</string>
-    <string name="lblCustomerInf">Customer Information</string>
+    <string name="lblCustomerInf">Information customer form</string>
     <string name="lblChoosePaymentMethod">CHOOSE PAYMENT METHOD</string>
     <string name="txtPaymentMethod1">Buy tickets at the counter</string>
-    <string name="txtPaymentMethod2">Pay by credit card</string>
+    <string name="txtPaymentMethod2">Cash of delivery</string>
     <string name="notePayment1">Note: If you choose to pay at the counter. Please get there 30 minutes in advance</string>
+    <string name="notePayment2">Note: If you choose the payment method upon delivery (COD). We will try to send it to you as soon as possible on July 30, 2020</string>
     <string name="edtCardNumberHint">Credit card number...</string>
     <string name="edtCardPassHint">Credit card password...</string>
     <string name="btnCompletePayment">Complete payment</string>
+    <string name="lblFullname">Full name: </string>
+    <string name="lblPhone">Phone: </string>
+    <string name="hintFullName">Input your name...</string>
+    <string name="hintPhone">Input your phone number...</string>
+    <string name="btnBack">Back</string>
+    <string name="txtAlertInfo">Please enter your information</string>
+    <string name="hintEdtAddress">Please enter your address</string>
+
 </resources>

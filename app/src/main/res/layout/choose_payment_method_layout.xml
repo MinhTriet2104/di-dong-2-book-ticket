@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:paddingVertical="15dp"
                 android:text="@string/notePayment1"
-                android:textSize="20dp"
+                android:textSize="17dp"
                 android:visibility="gone" />
 
             <LinearLayout
@@ -83,85 +83,31 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/popupInfoCard"
+                android:id="@+id/popupPayment2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:orientation="vertical">
-
-                <LinearLayout
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="left|center"
+                    android:textSize="@dimen/txtSize4"
+                    android:text="Input your address"/>
+                <EditText
+                    android:id="@+id/edtAddressCustomer"
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:hint="@string/hintEdtAddress"
+                    android:textColor="@color/colorWhite"
+                    android:inputType="text|textMultiLine"
+                    android:gravity="top"/>
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="10">
-
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:src="@drawable/credit_card_icon" />
-
-                    <EditText
-                        android:id="@+id/edtCardNumber"
-                        android:layout_width="0dp"
-                        android:layout_height="50dp"
-                        android:layout_weight="9"
-                        android:hint="@string/edtCardNumberHint"
-                        android:inputType="number"
-                        android:maxLength="12"
-                        android:paddingLeft="20dp"
-                        android:textColor="@color/colorWhite" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="10">
-
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:src="@drawable/password_card_icon" />
-
-                    <EditText
-                        android:id="@+id/edtCardPassword"
-                        android:layout_width="0dp"
-                        android:layout_height="50dp"
-                        android:layout_weight="9"
-                        android:hint="@string/edtCardNumberHint"
-                        android:inputType="numberPassword"
-                        android:maxLength="6"
-                        android:paddingLeft="20dp"
-                        android:textColor="@color/colorWhite" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:orientation="horizontal"
-                    android:gravity="center"
-                    android:weightSum="4"
-                    android:layout_height="60dp">
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/paypal"/>
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/credit_card_visa"/>
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/mastercard"/>
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/maestro"/>
+                    android:paddingVertical="15dp"
+                    android:text="@string/notePayment2"
+                    android:textSize="17dp"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -210,34 +156,39 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:gravity="left|center"
-                android:textSize="23dp"
+                android:textSize="@dimen/txtSize3"
                 android:text="@string/totalPrice"
-                android:layout_weight="1.5"/>
+                android:layout_weight="1"/>
             <TextView
                 android:id="@+id/txtPaymentPrice"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:gravity="left|center"
                 android:textColor="@color/colorPrice"
-                android:textSize="23dp"
+                android:textSize="@dimen/txtSize3"
                 android:text="100000 vnđ"
                 android:layout_weight="2"/>
         </LinearLayout>
+    <LinearLayout
+        style="@style/paymentLinearLayoutStyle"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        android:layout_weight="0.75">
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginRight="15dp"
+            android:background="@color/colorDarkSecondary"
+            android:text="Back"
+            android:id="@+id/btnBackPayment"/>
+
+        <Button
+            android:id="@+id/btnConfirmPayment"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:background="@drawable/gradient_purple_color"
+            android:text="@string/btnTicket"/>
     </LinearLayout>
-
-
-    <com.sanojpunchihewa.glowbutton.GlowButton
-        android:id="@+id/btnCompletePayment"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        app:unpressedGlowSize="10dp"
-        app:pressedGlowSize="25dp"
-        app:cornerRadius="50dp"
-        app:glowColor="@color/colorPurple"
-        android:text="@string/btnCompletePayment"
-        android:textSize="20dp"
-        android:textAllCaps="false"
-        android:background="@drawable/gradient_purple_color"
-        />
-</LinearLayout>
+    </LinearLayout>

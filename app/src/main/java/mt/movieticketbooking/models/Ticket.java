@@ -12,6 +12,7 @@ public class Ticket implements Serializable {
     private String ticketRoom;
     private double ticketPrice;
     private Date orderTime;
+    private boolean ticketStatus;
     private ArrayList<String> listSeat;
 
     public Ticket() {}
@@ -24,10 +25,16 @@ public class Ticket implements Serializable {
         this.ticketRoom = ticketRoom;
         this.ticketPrice = ticketPrice;
         this.listSeat = listSeat;
+        orderTime = new Date();
+        ticketStatus = false;
     }
 
     public Date getOrderTime() {
         return orderTime;
+    }
+
+    public boolean isTicketStatus() {
+        return ticketStatus;
     }
 
     public double getTotalPrice() {
@@ -100,5 +107,9 @@ public class Ticket implements Serializable {
 
     public void setListSeat(ArrayList<String> listSeat) {
         this.listSeat = listSeat;
+    }
+
+    public void setTicketStatus(boolean ticketStatus) {
+        this.ticketStatus = ticketStatus;
     }
 }

@@ -10,5 +10,9 @@
     <dimen name="cardCornerRadius">4dp</dimen>
     <dimen name="cardElevation">4dp</dimen>
     <dimen name="lblChoosePayment">25dp</dimen>
-
+    <dimen name="txtSize1">10dp</dimen>
+    <dimen name="txtSize2">15dp</dimen>
+    <dimen name="txtSize3">20dp</dimen>
+    <dimen name="txtSize4">25dp</dimen>
+    <dimen name="txtSize5">30dp</dimen>
 </resources>

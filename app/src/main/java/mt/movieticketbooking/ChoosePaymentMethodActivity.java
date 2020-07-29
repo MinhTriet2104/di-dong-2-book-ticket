@@ -44,16 +44,16 @@ public class ChoosePaymentMethodActivity extends AppCompatActivity {
     private TextView txtCustomerInfo;
 
     private TextView txtTicketOrderTime;
-    private Button btnCompletePayment;
+    private EditText edtAddressCustomer;
+    private Button btnBackPayment;
+    private Button btnConfirmPayment;
 
     //Process
     private CheckBox ckbPayment1;
     private CheckBox ckbPayment2;
     private TextView txtPopupPayment1;
-    private LinearLayout popupLinearLayout;
+    private LinearLayout linearPopupPayment2;
     private TextView txtPaymentMethod;
-    private EditText edtCardNumber;
-    private EditText edtPassword;
 
     //Models
     private Ticket ticket;
@@ -73,10 +73,11 @@ public class ChoosePaymentMethodActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        final Intent intent = getIntent();
         // Payment layout
         setContentView(R.layout.choose_payment_method_layout);
         // Get data from BookTicketActivity
-        bundle = getIntent().getExtras();
+        bundle = intent.getExtras();
         if(bundle != null){
             ticket = new Gson().fromJson(bundle.getString(PaymentActivity.TICKET_CODE_REQUEST), Ticket.class);
             customer = new Gson().fromJson(bundle.getString(PaymentActivity.CUSTOMER_CODE_REQUEST), Customer.class);
@@ -86,18 +87,18 @@ public class ChoosePaymentMethodActivity extends AppCompatActivity {
         ckbPayment1 = (CheckBox) findViewById(R.id.ckbPayment1);
         ckbPayment2 = (CheckBox) findViewById(R.id.ckbPayment2);
         txtPopupPayment1 = (TextView) findViewById(R.id.popupPayment1);
-        popupLinearLayout = (LinearLayout) findViewById(R.id.popupInfoCard);
+        linearPopupPayment2 = (LinearLayout) findViewById(R.id.popupPayment2);
         txtPaymentMethod = (TextView) findViewById(R.id.txtPaymentMethod);
-        edtCardNumber = (EditText) findViewById(R.id.edtCardNumber);
-        edtPassword = (EditText) findViewById(R.id.edtCardPassword);
         //Setup view ticket
         txtTicketName = (TextView) findViewById(R.id.txtTicketNameMovie);
         txtTotalPrice = (TextView) findViewById(R.id.txtPaymentPrice);
         txtTicketOrderTime = (TextView) findViewById(R.id.ticketPaymentTime);
         //Setup view customer
         txtCustomerInfo = (TextView) findViewById(R.id.txtInfoCustomer);
+        edtAddressCustomer = (EditText) findViewById(R.id.edtAddressCustomer);
         //Btn complete payment
-        btnCompletePayment = (Button) findViewById(R.id.btnCompletePayment);
+        btnBackPayment = (Button) findViewById(R.id.btnBackPayment);
+        btnConfirmPayment = (Button) findViewById(R.id.btnConfirmPayment);
 
         //Set data
         bindTicket();
@@ -105,7 +106,7 @@ public class ChoosePaymentMethodActivity extends AppCompatActivity {
         getPaymentMethod(payType);
 
 
-        btnCompletePayment.setOnClickListener(new View.OnClickListener() {
+        btnConfirmPayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // create ticketDoc (ticket document)
@@ -117,7 +118,9 @@ public class ChoosePaymentMethodActivity extends AppCompatActivity {
                 ticketDoc.put("listSeat", ticket.getListSeat());
                 ticketDoc.put("totalPrice", ticket.getTotalPrice());
                 ticketDoc.put("orderDate", new Timestamp(ticket.getOrderTime()));
-                ticketDoc.put("paymentStatus", payType);
+                ticketDoc.put("paymentType", payType);
+                ticketDoc.put("paymentStatus", ticket.isTicketStatus());
+                ticketDoc.put("customerPhone", customer.getPhoneNumber());
                 Log.d("triet-debug", ticketDoc.toString());
 
                 if(payType == 0){
@@ -140,7 +143,7 @@ public class ChoosePaymentMethodActivity extends AppCompatActivity {
                                 }
                             });
                 }else{
-                    if(String.valueOf(edtCardNumber.getText()).equals("111111111111") && String.valueOf(edtPassword.getText()).equals("123456")){
+                    if(!String.valueOf(edtAddressCustomer.getText()).trim().isEmpty()){
                         Toast.makeText(ChoosePaymentMethodActivity.this, "Pay type 1 accept", Toast.LENGTH_SHORT).show();
                         // Payment success add a new ticket document
                         db.collection("tickets")
@@ -165,6 +168,15 @@ public class ChoosePaymentMethodActivity extends AppCompatActivity {
                     }
                 }
 
+            }
+        });
+
+        btnBackPayment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent.setClass(ChoosePaymentMethodActivity.this, PaymentActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(intent);
             }
         });
 
@@ -214,12 +226,12 @@ public class ChoosePaymentMethodActivity extends AppCompatActivity {
     private void getPaymentMethod(int type) {
         if (type == 0) {
             txtPopupPayment1.setVisibility(View.VISIBLE);
-            popupLinearLayout.setVisibility(View.GONE);
+            linearPopupPayment2.setVisibility(View.GONE);
             txtPaymentMethod.setText("Paymend method: Buy tickets at the counter");
         } else {
             txtPopupPayment1.setVisibility(View.GONE);
-            popupLinearLayout.setVisibility(View.VISIBLE);
-            txtPaymentMethod.setText("Paymend method: Pay by credit card");
+            linearPopupPayment2.setVisibility(View.VISIBLE);
+            txtPaymentMethod.setText("Paymend method: Cash of delivery");
         }
     }
 }

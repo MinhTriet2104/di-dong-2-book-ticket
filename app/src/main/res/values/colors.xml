@@ -9,4 +9,5 @@
     <color name="colorPurple" >#B820FF</color>
     <color name="colorPrice">#FFFF00</color>
     <color name="colorPayment">#28AEBC</color>
+    <color name="colorRed">#e74c3c</color>
 </resources>
