@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -14,19 +15,29 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.gson.Gson;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import mt.movieticketbooking.models.Customer;
 import mt.movieticketbooking.models.DownloadImageTask;
 import mt.movieticketbooking.models.Ticket;
 
 public class ChoosePaymentMethodActivity extends AppCompatActivity {
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+
     public static String ADDRESS_CINE = "5th Floor, Vincom Thu Duc Shopping Mall, 216 Vo Van Ngan, Binh Tho Ward, Thu Duc District";
     private TextView txtTicketName;
     private TextView txtTotalPrice;
@@ -97,11 +108,57 @@ public class ChoosePaymentMethodActivity extends AppCompatActivity {
         btnCompletePayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // create ticketDoc (ticket document)
+                Map<String, Object> ticketDoc = new HashMap<>();
+                ticketDoc.put("movieName", ticket.getMovieName());
+                ticketDoc.put("movieDate", ticket.getTicketDate());
+                ticketDoc.put("movieTime", ticket.getTicketTime());
+                ticketDoc.put("ticketRoom", ticket.getTicketRoom());
+                ticketDoc.put("listSeat", ticket.getListSeat());
+                ticketDoc.put("totalPrice", ticket.getTotalPrice());
+                ticketDoc.put("orderDate", new Timestamp(ticket.getOrderTime()));
+                ticketDoc.put("paymentStatus", payType);
+                Log.d("triet-debug", ticketDoc.toString());
+
                 if(payType == 0){
                     Toast.makeText(ChoosePaymentMethodActivity.this, "Pay type 0", Toast.LENGTH_SHORT).show();
+                    // Add a new ticket document
+                    db.collection("tickets")
+                            .add(ticketDoc)
+                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                @Override
+                                public void onSuccess(DocumentReference documentReference) {
+                                    // get id of ticket document
+                                    Log.d("triet-debug", "ticket ID: " + documentReference.getId());
+                                    Toast.makeText(ChoosePaymentMethodActivity.this, "ticket ID: " + documentReference.getId(), Toast.LENGTH_LONG).show();
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(ChoosePaymentMethodActivity.this, "Error: " + e, Toast.LENGTH_LONG).show();
+                                }
+                            });
                 }else{
                     if(String.valueOf(edtCardNumber.getText()).equals("111111111111") && String.valueOf(edtPassword.getText()).equals("123456")){
                         Toast.makeText(ChoosePaymentMethodActivity.this, "Pay type 1 accept", Toast.LENGTH_SHORT).show();
+                        // Payment success add a new ticket document
+                        db.collection("tickets")
+                                .add(ticketDoc)
+                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                    @Override
+                                    public void onSuccess(DocumentReference documentReference) {
+                                        // get id of ticket document
+                                        Log.d("triet-debug", "ticket ID: " + documentReference.getId());
+                                        Toast.makeText(ChoosePaymentMethodActivity.this, "ticket ID: " + documentReference.getId(), Toast.LENGTH_LONG).show();
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(ChoosePaymentMethodActivity.this, "Error: " + e, Toast.LENGTH_LONG).show();
+                                    }
+                                });
                     }
                     else{
                         Toast.makeText(ChoosePaymentMethodActivity.this, "Pay type 1 fail", Toast.LENGTH_SHORT).show();
