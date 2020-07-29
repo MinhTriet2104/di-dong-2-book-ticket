@@ -22,6 +22,7 @@
         <item name="android:onClick">onCheckboxClicked</item>
         <item name="android:textColor">@color/colorWhite</item>
         <item name="android:layout_gravity">center</item>
+        <item name="android:buttonTint">@color/colorDarkSecondary</item>
     </style>
     <style name="edtAboutMoviesStyle">
         <item name="android:layout_width">wrap_content</item>
