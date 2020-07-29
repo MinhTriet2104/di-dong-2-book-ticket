@@ -6,7 +6,7 @@
     android:background="@color/colorDarkPrimary"
     android:orientation="vertical"
     android:paddingHorizontal="15dp"
-    android:paddingVertical="20dp">
+    android:paddingVertical="10dp">
 
     <!-- Title   -->
     <TextView
@@ -40,14 +40,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="11"
+        android:layout_weight="8"
         android:orientation="vertical">
 
         <!-- Screen -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2">
+            android:layout_weight="1">
 
             <com.sanojpunchihewa.glowbutton.GlowButton
                 android:layout_width="match_parent"
@@ -69,7 +69,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="8"
+            android:layout_weight="6"
             android:orientation="horizontal">
 
             <!-- Seat Number 1 - 4 -->
@@ -263,6 +263,9 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
+                    android:textColor="@color/colorPurple"
+                    android:textStyle="bold"
+                    android:textSize="25dp"
                     android:text="A"/>
 
                 <TextView
@@ -270,6 +273,9 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
+                    android:textColor="@color/colorPurple"
+                    android:textStyle="bold"
+                    android:textSize="25dp"
                     android:text="B" />
 
                 <TextView
@@ -277,6 +283,9 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
+                    android:textColor="@color/colorPurple"
+                    android:textStyle="bold"
+                    android:textSize="25dp"
                     android:text="C" />
 
                 <TextView
@@ -284,6 +293,9 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
+                    android:textColor="@color/colorPurple"
+                    android:textStyle="bold"
+                    android:textSize="25dp"
                     android:text="D" />
 
                 <TextView
@@ -291,6 +303,9 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
+                    android:textColor="@color/colorPurple"
+                    android:textStyle="bold"
+                    android:textSize="25dp"
                     android:text="E" />
 
                 <TextView
@@ -298,6 +313,9 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
+                    android:textColor="@color/colorPurple"
+                    android:textStyle="bold"
+                    android:textSize="25dp"
                     android:text="F" />
 
             </LinearLayout>
@@ -525,15 +543,17 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginVertical="10dp">
 
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginRight="15dp"
+            android:layout_marginEnd="15dp"
             android:background="@color/colorDarkSecondary"
             android:text="Back"
+            android:textAllCaps="false"
             android:id="@+id/btnBack"/>
 
         <Button
@@ -541,8 +561,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="4"
+            android:text="Buy Ticket"
             android:background="@drawable/gradient_purple_color"
-            android:text="Buy Now"/>
+            android:textSize="20dp"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            />
 
     </LinearLayout>
 
