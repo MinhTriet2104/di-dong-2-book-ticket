@@ -27,12 +27,13 @@ import java.util.Vector;
 
 import mt.movieticketbooking.adapters.DateTimeAdapter;
 import mt.movieticketbooking.models.Movie;
+import mt.movieticketbooking.models.MyDateTimeData;
 import mt.movieticketbooking.models.Ticket;
 
 public class BookTicketActivity extends AppCompatActivity {
     private Movie movie = new Movie();
     private ArrayList<String> listSeatSelected = new ArrayList<>();
-    private Vector<String> dateData = new Vector<>();
+    private Vector<MyDateTimeData> dateData = new Vector<>();
     private String movieTitle;
     private String room = "A1";
     private String dateSelected = "20/08/2020";
@@ -65,12 +66,12 @@ public class BookTicketActivity extends AppCompatActivity {
         lblTag = findViewById(R.id.movieTag);
         lblRoomAndDuration = findViewById(R.id.movieRoomAndDuration);
 
-        dateData.add("20/08");
-        dateData.add("23/08");
-        dateData.add("26/08");
-        dateData.add("27/08");
-        dateData.add("02/09");
-        dateData.add("05/09");
+        dateData.add(new MyDateTimeData("20/08"));
+        dateData.add(new MyDateTimeData("23/08"));
+        dateData.add(new MyDateTimeData("26/08"));
+        dateData.add(new MyDateTimeData("27/08"));
+        dateData.add(new MyDateTimeData("02/09"));
+        dateData.add(new MyDateTimeData("05/09"));
 
         recyclerViewDate = findViewById(R.id.movieDate);
         recyclerViewTime = findViewById(R.id.movieTime);

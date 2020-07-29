@@ -13,11 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.Vector;
 
 import mt.movieticketbooking.R;
+import mt.movieticketbooking.models.MyDateTimeData;
 
 public class DateTimeAdapter extends RecyclerView.Adapter<DateTimeAdapter.MyViewHolder> {
-    private Vector<String> listDate;
+    private Vector<MyDateTimeData> listDate;
 
-    public DateTimeAdapter(Vector<String> listDate) {
+    public DateTimeAdapter(Vector<MyDateTimeData> listDate) {
         this.listDate = listDate;
     }
 
@@ -42,10 +43,22 @@ public class DateTimeAdapter extends RecyclerView.Adapter<DateTimeAdapter.MyView
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        String date = listDate.get(position);
+        final MyDateTimeData myDateTimeData = listDate.get(position);
+        String date = myDateTimeData.text;
+        holder.dateText.setChecked(myDateTimeData.selected);
         holder.dateText.setTextOff(date);
         holder.dateText.setTextOn(date);
         holder.dateText.setText(date);
+        holder.dateText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (MyDateTimeData date : listDate) {
+                    date.selected = false;
+                }
+                myDateTimeData.selected = true;
+                notifyDataSetChanged();
+            }
+        });
     }
 
     @Override
