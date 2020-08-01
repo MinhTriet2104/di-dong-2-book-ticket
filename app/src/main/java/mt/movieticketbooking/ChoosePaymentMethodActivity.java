@@ -119,7 +119,8 @@ public class ChoosePaymentMethodActivity extends AppCompatActivity {
                 ticketDoc.put("totalPrice", ticket.getTotalPrice());
                 ticketDoc.put("orderDate", new Timestamp(ticket.getOrderTime()));
                 ticketDoc.put("paymentType", payType);
-                ticketDoc.put("paymentStatus", ticket.isTicketStatus());
+                ticketDoc.put("paymentStatus", 0);
+                ticketDoc.put("customerFullName", customer.getFullName());
                 ticketDoc.put("customerPhone", customer.getPhoneNumber());
                 Log.d("triet-debug", ticketDoc.toString());
 
@@ -144,6 +145,7 @@ public class ChoosePaymentMethodActivity extends AppCompatActivity {
                             });
                 }else{
                     if(!String.valueOf(edtAddressCustomer.getText()).trim().isEmpty()){
+                        ticketDoc.put("customerAddress", String.valueOf(edtAddressCustomer.getText()).trim());
                         Toast.makeText(ChoosePaymentMethodActivity.this, "Pay type 1 accept", Toast.LENGTH_SHORT).show();
                         // Payment success add a new ticket document
                         db.collection("tickets")
