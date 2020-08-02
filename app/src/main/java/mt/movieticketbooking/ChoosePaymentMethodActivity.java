@@ -117,6 +117,7 @@ public class ChoosePaymentMethodActivity extends AppCompatActivity {
                 ticketDoc.put("ticketRoom", ticket.getTicketRoom());
                 ticketDoc.put("listSeat", ticket.getListSeat());
                 ticketDoc.put("totalPrice", ticket.getTotalPrice());
+                ticketDoc.put("imageUrl", ticket.getImageUrl());
                 ticketDoc.put("orderDate", new Timestamp(ticket.getOrderTime()));
                 ticketDoc.put("paymentType", payType);
                 ticketDoc.put("paymentStatus", 0);
