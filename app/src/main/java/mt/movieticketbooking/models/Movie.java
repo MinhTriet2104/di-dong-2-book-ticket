@@ -6,6 +6,7 @@ import java.util.Date;
 public class Movie {
     private String title;
     private int duration;
+    private String age;
     private int rating;
     private double price;
     private String room;
@@ -18,9 +19,11 @@ public class Movie {
     public Movie() {
     }
 
-    public Movie(String title, int duration, int rating, double price, String room, Date dateStart, Date dateEnd, String imageUrl, ArrayList<String> categories, ArrayList<String> timeFrame) {
+
+    public Movie(String title, int duration, String age, int rating, double price, String room, Date dateStart, Date dateEnd, String imageUrl, ArrayList<String> categories, ArrayList<String> timeFrame) {
         this.title = title;
         this.duration = duration;
+        this.age = age;
         this.rating = rating;
         this.price = price;
         this.room = room;
@@ -69,5 +72,12 @@ public class Movie {
 
     public ArrayList<String> getTimeFrame() {
         return timeFrame;
+    }
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
     }
 }

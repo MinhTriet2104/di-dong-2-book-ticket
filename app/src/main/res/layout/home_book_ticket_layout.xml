@@ -12,105 +12,30 @@
         android:layout_height="wrap_content"
         android:text="@string/lblBack"
         />
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="@string/lblTitleMovies"
-        android:gravity="center"
-        android:textSize="@dimen/lblTitleSize"
-        android:textColor="@color/colorWhite"
-        android:textStyle="bold"
-        android:id="@+id/lblTitleMovies"
-        />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.5"
-        android:orientation="horizontal"
-        android:padding="5dp"
-        android:weightSum="4">
-        <EditText
-            android:text="* 9.5/10"
-            style="@style/edtAboutMoviesStyle"
-            android:id="@+id/edtRate"
-            />
+        android:layout_weight="6"
+        android:id="@+id/recyclerViewHome">
 
-        <EditText
-            style="@style/edtAboutMoviesStyle"
-            android:text="15+"
-            android:id="@+id/edtYearsOld"
-            />
+    </androidx.recyclerview.widget.RecyclerView>
 
-        <EditText
-            android:text="action"
-            style="@style/edtAboutMoviesStyle"
-            android:id="@+id/movieType"
-            />
-        <EditText
-            android:text="Sci-Fi"
-            style="@style/edtAboutMoviesStyle"
-            android:id="@+id/edtSC"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.5"
-        android:gravity="center"
-        >
-        <!--  icon calendar-->
-        <ImageView
-            style="@style/iconImageStyle"
-            android:src="@drawable/purple_calendar"
-            />
-        <TextView
-            style="@style/textIconStyle"
-            android:text="May 10 - 15"
-            />
-
-        <!--  icon clock-->
-        <ImageView
-            style="@style/iconImageStyle"
-            android:src="@drawable/purple_clock"
-            />
-        <TextView
-            android:text="3 : 02"
-            style="@style/textIconStyle"/>
-
-        <!--  icon message-->
-        <ImageView
-            style="@style/iconImageStyle"
-            android:src="@drawable/purple_message"
-            />
-        <TextView
-            android:text="2048"
-            style="@style/textIconStyle"/>
-    </LinearLayout>
 
 <!--    tao recyclerView-->
 
-    <ImageView
-        android:id="@+id/imgMovies"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginVertical="5dp"
-        android:layout_weight="4"
-        android:src="@drawable/avenger_movies" />
 
     <com.sanojpunchihewa.glowbutton.GlowButton
+        android:id="@+id/btnBuyTicket"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.5"
         android:background="@drawable/gradient_purple_color"
+        android:paddingHorizontal="20dp"
         android:text="@string/btnBuy"
-        app:unpressedGlowSize="20dp"
-        app:pressedGlowSize="25dp"
-        app:cornerRadius="50dp"
-        app:glowColor="@color/colorPurple"
         android:textAllCaps="false"
         android:textColor="@color/colorWhite"
-        android:id="@+id/btnBuyTicket"
-        android:paddingHorizontal="20dp"
-     />
+        app:cornerRadius="50dp"
+        app:glowColor="@color/colorPurple"
+        app:pressedGlowSize="25dp"
+        app:unpressedGlowSize="20dp" />
 </LinearLayout>
