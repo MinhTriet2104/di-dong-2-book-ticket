@@ -22,5 +22,6 @@
     <string name="btnBack">Back</string>
     <string name="txtAlertInfo">Please enter your information</string>
     <string name="hintEdtAddress">Please enter your address</string>
+    <string name="lblChooseRoom">Let choose a room</string>
 
 </resources>

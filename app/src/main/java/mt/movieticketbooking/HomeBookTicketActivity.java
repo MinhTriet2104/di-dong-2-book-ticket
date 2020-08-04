@@ -1,46 +1,55 @@
 package mt.movieticketbooking;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.squareup.picasso.Picasso;
 
-import java.net.URI;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Vector;
 
-import mt.movieticketbooking.models.DownloadImageTask;
-import mt.movieticketbooking.models.Movie;
+import mt.movieticketbooking.adapters.MovieAdapter;
+import mt.movieticketbooking.adapters.RoomAdapter;
+import mt.movieticketbooking.models.MovieModel;
+import mt.movieticketbooking.models.RoomModel;
 
 public class HomeBookTicketActivity extends AppCompatActivity {
 
     private CollectionReference nCollectionRefMovies = FirebaseFirestore.getInstance().collection("movies");
     private Button btnBuyTicket;
-    private ImageView imageMovie;
-    private EditText edtRate;
-    private EditText edtYearsOld;
-    private EditText edtMoviesType;
-    private EditText edtSC;
-    private TextView lblTitle;
-    private ArrayList<Movie> listMovies;
-    String titleMovie;
+    public Vector<MovieModel> listMovies = new Vector<MovieModel>();
+    public Vector<RoomModel> listRoom = new Vector<RoomModel>();
+    MovieAdapter movieAdapter;
+    RoomAdapter roomAdapter;
+    public int duration;
+    public static String roomSelected= "";
+    public double price, rating;
+    public String imageUrl, titleMovie, movieID, age;
+    public ArrayList<String> categories;
+    public int lastPosition;
+    RecyclerView recyclerView;
+    RecyclerView roomRecyclerView;
+    private BottomSheetDialog bottomSheetDialog;
+    public ImageView imgChooseRoom;
     Intent intent;
 
     @Override
@@ -48,64 +57,24 @@ public class HomeBookTicketActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_book_ticket_layout);
         btnBuyTicket = findViewById(R.id.btnBuyTicket);
-        imageMovie = findViewById(R.id.imgMovies);
-        edtRate = findViewById(R.id.edtRate);
-        edtMoviesType = findViewById(R.id.movieType);
-        edtSC = findViewById(R.id.edtSC);
-        edtYearsOld = findViewById(R.id.edtYearsOld);
-        lblTitle = findViewById(R.id.lblTitleMovies);
+        recyclerView = findViewById(R.id.recyclerViewHome);
+        recyclerView.setHasFixedSize(true);
+        final LinearLayoutManager inflater = new LinearLayoutManager(this);
+        inflater.setOrientation(RecyclerView.HORIZONTAL);
+        recyclerView.setLayoutManager(inflater);
+
         intent = getIntent();
-
-        // Set Event for btn Buy ticket
-        btnBuyTicket.setOnClickListener(new View.OnClickListener() {
+        listRoom.add(new RoomModel("A1"));
+        listRoom.add(new RoomModel("B1"));
+        listRoom.add(new RoomModel("F1"));
+        listRoom.add(new RoomModel("D1"));
+        roomAdapter = new RoomAdapter(listRoom);
+        // get position of card view
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onClick(View v) {
-                intent.setClass(HomeBookTicketActivity.this, BookTicketActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                startActivity(intent);
-            }
-        });
-        // Set Event for movie image clicked
-        imageMovie.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                intent.setClass(HomeBookTicketActivity.this, BookTicketActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                startActivity(intent);
-            }
-        });
-
-        // Set Event for movie image clicked
-        edtRate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String edtText = edtRate.getText() + "";
-                Toast.makeText(HomeBookTicketActivity.this, edtText , Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        // Set Event for movie edt clicked
-        edtYearsOld.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String edtText = edtYearsOld.getText() + "";
-                Toast.makeText(HomeBookTicketActivity.this, edtText , Toast.LENGTH_SHORT).show();
-            }
-        });
-        // Set Event for edt clicked
-        edtMoviesType.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String edtText = edtMoviesType.getText() + "";
-                Toast.makeText(HomeBookTicketActivity.this, edtText , Toast.LENGTH_SHORT).show();
-            }
-        });
-        // Set Event for edt clicked
-        edtSC.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String edtText = edtSC.getText() + "";
-                Toast.makeText(HomeBookTicketActivity.this, edtText , Toast.LENGTH_SHORT).show();
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                lastPosition = inflater.findFirstVisibleItemPosition();
             }
         });
 
@@ -116,13 +85,66 @@ public class HomeBookTicketActivity extends AppCompatActivity {
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         Log.d("getdoc", document.getId() + " => " + document.getData());
                         titleMovie = document.getData().get("title").toString();
-                        new DownloadImageTask(imageMovie).execute(document.getData().get("imageUrl")+"");
+                        rating = Double.parseDouble(document.getData().get("rating").toString());
+                        age = document.getData().get("age").toString();
+                        categories = (ArrayList<String>) document.getData().get("categories");
+                        imageUrl = document.getData().get("imageUrl").toString();
+                        duration = Integer.parseInt(document.getData().get("duration").toString());
+                        movieID = document.getId();
+//                        listRoom =(ArrayList<String>) document.getData().get("rooms");
+                        Map<String, String> roomData = new HashMap<>();
+                        listMovies.add(new MovieModel(movieID, titleMovie, duration, age, rating, price,  imageUrl, categories));
                     }
+                    movieAdapter = new MovieAdapter(listMovies);
+                    recyclerView.setAdapter(movieAdapter);
+
+                    movieAdapter.setOnItemClickListener(new MovieAdapter.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(int position) {
+                            intent.putExtra("movieId", listMovies.get(position).getMovieId());
+                            intent.putExtra("room", roomSelected);
+                            showChooseRoomDialog();
+                            Picasso.get().load(listMovies.get(position).getImageUrl()).into(imgChooseRoom);
+                            Toast.makeText(HomeBookTicketActivity.this, "ID =" + listMovies.get(position).getMovieId(),Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 } else {
                     Log.w("noGet", "Error getting documents.", task.getException());
                 }
             }
         });
+        btnBuyTicket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent.setClass(HomeBookTicketActivity.this, BookTicketActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                intent.putExtra("movieId", listMovies.get(lastPosition).getMovieId());
+                intent.putExtra("room", roomSelected);
+                showChooseRoomDialog();
+                Picasso.get().load(listMovies.get(lastPosition).getImageUrl()).into(imgChooseRoom);
+                Toast.makeText(HomeBookTicketActivity.this, "ID =" + listMovies.get(lastPosition).getMovieId(),Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
+    public void showChooseRoomDialog() {
+        bottomSheetDialog = new BottomSheetDialog(HomeBookTicketActivity.this);
+        View view = getLayoutInflater().from(HomeBookTicketActivity.this).inflate(R.layout.choose_room_dialog_layout, null);
+        imgChooseRoom = view.findViewById(R.id.imageChoosed);
+        view.findViewById(R.id.btnChoosedRoom).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(intent);
+                bottomSheetDialog.dismiss();
+            }
+        });
+        roomRecyclerView = view.findViewById(R.id.recyclerViewRoom);
+        final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(RecyclerView.HORIZONTAL);
+        roomRecyclerView.setLayoutManager(layoutManager);
+        roomRecyclerView.setAdapter(roomAdapter);
+        bottomSheetDialog.setContentView(view);
+        bottomSheetDialog.show();
+    }
 }

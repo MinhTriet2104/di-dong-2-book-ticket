@@ -39,4 +39,8 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:1.1.0"
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'me.rishabhkhanna:CustomToggle:1.0.0'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.google.android.material:material:1.2.0-alpha02'
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+
 }

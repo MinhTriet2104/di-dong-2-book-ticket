@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorDarkPrimary"
+    >
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="3dp"
+        card_view:cardElevation="@dimen/cardElevation"
+        card_view:cardCornerRadius="@dimen/cardCornerRadius"
+        android:id="@+id/cardMovie">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorDarkPrimary"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="@string/lblTitleMovies"
+                android:gravity="center"
+                android:textSize="@dimen/lblTitleSize"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold"
+                android:id="@+id/lblTitleMovies"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:weightSum="4">
+                <EditText
+                    android:text="* 9.5/10"
+                    style="@style/edtAboutMoviesStyle"
+                    android:id="@+id/edtRate"
+                    />
+
+                <EditText
+                    style="@style/edtAboutMoviesStyle"
+                    android:text="15+"
+                    android:id="@+id/edtAge"
+                    />
+
+                <EditText
+                    android:text="action"
+                    style="@style/edtAboutMoviesStyle"
+                    android:id="@+id/edtMovieType"
+                    />
+                <EditText
+                    android:text="Sci-Fi"
+                    style="@style/edtAboutMoviesStyle"
+                    android:id="@+id/edtSC"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                >
+                <!--  icon calendar-->
+                <ImageView
+                    style="@style/iconImageStyle"
+                    android:src="@drawable/purple_calendar"
+                    />
+                <TextView
+                    style="@style/textIconStyle"
+                    android:text="May 10 - 15"
+                    android:id="@+id/lblDate"
+                    />
+
+                <!--  icon clock-->
+                <ImageView
+                    style="@style/iconImageStyle"
+                    android:src="@drawable/purple_clock"
+                    />
+                <TextView
+                    android:text="3 : 02"
+                    style="@style/textIconStyle"
+                    android:id="@+id/lblDuration"/>
+
+            </LinearLayout>
+            <ImageView
+                android:id="@+id/imgMovies"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginVertical="5dp"
+                android:layout_weight="4"
+                android:src="@drawable/avenger_movies" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
