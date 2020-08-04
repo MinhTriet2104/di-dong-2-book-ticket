@@ -22,6 +22,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
 
@@ -140,8 +141,10 @@ public class BookTicketActivity extends AppCompatActivity {
                     movieTitle = data.get("title").toString();
                     price = Double.parseDouble(data.get("price").toString());
                     imageUrl = data.get("imageUrl").toString();
-//                    Map<String, Object> roomData = data.get("rooms");
-//                    room = roomData.get("name").toString();
+                    ArrayList<HashMap> roomData = (ArrayList<HashMap>) data.get("rooms");
+                    for (HashMap room : roomData) {
+                        Log.d("triet-room", room.get("name").toString());
+                    }
                     int hours = Integer.parseInt(data.get("duration").toString()) / 60;
                     int minutes = Integer.parseInt(data.get("duration").toString()) % 60;
                     duration = String.format("%d:%02d", hours, minutes);
