@@ -61,9 +61,9 @@
         android:background="@color/colorDivider" />
 
     <com.sanojpunchihewa.glowbutton.GlowButton
-        android:id="@+id/btnChoosedRoom"
+        android:id="@+id/btnChooseRoom"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:background="@drawable/gradient_purple_color"
         android:paddingHorizontal="20dp"
         android:text="@string/btnBuy"

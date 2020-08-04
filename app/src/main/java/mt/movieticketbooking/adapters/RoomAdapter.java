@@ -31,24 +31,37 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.MyViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
         final RoomModel room = listRoom.get(position);
-        holder.roomtext.setChecked(room.selectedRoom);
-        holder.roomtext.setText(room.getRoomText());
-        holder.roomtext.setTextOn(room.getRoomText());
-        holder.roomtext.setTextOff(room.getRoomText());
-        holder.roomtext.setOnClickListener(new View.OnClickListener() {
+        holder.roomText.setChecked(room.selectedRoom);
+        holder.roomText.setText(room.getRoomText());
+        holder.roomText.setTextOn(room.getRoomText());
+        holder.roomText.setTextOff(room.getRoomText());
+        holder.roomText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                for (RoomModel aroom : listRoom)
+                if (!holder.roomText.isChecked())
                 {
-                    aroom.selectedRoom = false;
+                    for (RoomModel aRoom : listRoom)
+                    {
+                        aRoom.selectedRoom = false;
+                    }
+                    HomeBookTicketActivity.roomSelected = "";
                 }
-                room.selectedRoom = true;
-                if (room.getRoomText() != "")
-                {
-                    HomeBookTicketActivity.roomSelected = room.getRoomText();
+                else{
+                    for (RoomModel aRoom : listRoom)
+                    {
+                        aRoom.selectedRoom = false;
+                    }
+                    room.selectedRoom = true;
+                    if (room.getRoomText() != "")
+                    {
+                        HomeBookTicketActivity.roomSelected = room.getRoomText();
+                    }else{
+                        HomeBookTicketActivity.roomSelected = room.getRoomText();
+                    }
                 }
+                notifyDataSetChanged();
             }
         });
     }
@@ -59,10 +72,10 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.MyViewHolder> 
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        ToggleButton roomtext;
+        ToggleButton roomText;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            roomtext = itemView.findViewById(R.id.roomText);
+            roomText = itemView.findViewById(R.id.roomText);
         }
     }
 }
