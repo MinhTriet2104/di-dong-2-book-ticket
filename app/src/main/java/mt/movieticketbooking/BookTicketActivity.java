@@ -16,11 +16,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
@@ -31,12 +36,15 @@ import mt.movieticketbooking.models.MyDateTimeData;
 import mt.movieticketbooking.models.Ticket;
 
 public class BookTicketActivity extends AppCompatActivity {
-    private Movie movie = new Movie();
+//    private Movie movie = new Movie();
     private ArrayList<String> listSeatSelected = new ArrayList<>();
-    private Vector<MyDateTimeData> dateData = new Vector<>();
-    private Vector<MyDateTimeData> timeData = new Vector<>();
+    private ArrayList<Date> timeFrame = new ArrayList<>();
+    public static HashMap<String, ArrayList<String>> dateMap = new HashMap<>();
+    public static Vector<MyDateTimeData> dateData = new Vector<>();
+    public static Vector<MyDateTimeData> timeData = new Vector<>();
     private String movieTitle;
-    private String room = "A1";
+    private String roomId = "";
+    private String movieId = "";
     public static String dateSelected = "";
     public static String timeSelected = "";
     private String strCategories = "";
@@ -45,8 +53,11 @@ public class BookTicketActivity extends AppCompatActivity {
     private String imageUrl;
     private DocumentReference nDocRefMovie = FirebaseFirestore.getInstance().document("movies/aNwkXJ1HXiDT3fh4Qykx");
 
+    public static DateTimeAdapter adapterDate;
+    public static DateTimeAdapter adapterTime;
+
     private RecyclerView recyclerViewDate;
-    private RecyclerView recyclerViewTime;
+    public static RecyclerView recyclerViewTime;
     private Button btnBack;
     private Button btnBuyNow;
     private TextView lblTitle;
@@ -60,6 +71,13 @@ public class BookTicketActivity extends AppCompatActivity {
         setContentView(R.layout.book_ticket_layout);
         final Intent intent = getIntent();
 
+        if (intent.hasExtra("room") && intent.hasExtra("movieId")) {
+            roomId = intent.getStringExtra("room");
+            movieId = intent.getStringExtra("movieId");
+            Log.d("room+movieId", roomId + "/" + movieId);
+            nDocRefMovie = FirebaseFirestore.getInstance().document("movies/" + movieId);
+        }
+
         //get ID from layout
         btnBack = findViewById(R.id.btnBack);
         btnBuyNow = findViewById(R.id.btnBuyNow);
@@ -67,19 +85,19 @@ public class BookTicketActivity extends AppCompatActivity {
         lblTag = findViewById(R.id.movieTag);
         lblRoomAndDuration = findViewById(R.id.movieRoomAndDuration);
 
-        dateData.add(new MyDateTimeData("20/08"));
-        dateData.add(new MyDateTimeData("23/08"));
-        dateData.add(new MyDateTimeData("26/08"));
-        dateData.add(new MyDateTimeData("27/08"));
-        dateData.add(new MyDateTimeData("02/09"));
-        dateData.add(new MyDateTimeData("05/09"));
-
-        timeData.add(new MyDateTimeData("9:00"));
-        timeData.add(new MyDateTimeData("10:30"));
-        timeData.add(new MyDateTimeData("13:00"));
-        timeData.add(new MyDateTimeData("17:15"));
-        timeData.add(new MyDateTimeData("20:00"));
-        timeData.add(new MyDateTimeData("22:00"));
+//        dateData.add(new MyDateTimeData("20/08"));
+//        dateData.add(new MyDateTimeData("23/08"));
+//        dateData.add(new MyDateTimeData("26/08"));
+//        dateData.add(new MyDateTimeData("27/08"));
+//        dateData.add(new MyDateTimeData("02/09"));
+//        dateData.add(new MyDateTimeData("05/09"));
+//
+//        timeData.add(new MyDateTimeData("9:00"));
+//        timeData.add(new MyDateTimeData("10:30"));
+//        timeData.add(new MyDateTimeData("13:00"));
+//        timeData.add(new MyDateTimeData("17:15"));
+//        timeData.add(new MyDateTimeData("20:00"));
+//        timeData.add(new MyDateTimeData("22:00"));
 
         recyclerViewDate = findViewById(R.id.movieDate);
         recyclerViewTime = findViewById(R.id.movieTime);
@@ -91,11 +109,6 @@ public class BookTicketActivity extends AppCompatActivity {
 
         recyclerViewDate.setLayoutManager(layoutManagerDate);
         recyclerViewTime.setLayoutManager(layoutManagerTime);
-
-        DateTimeAdapter adapterDate = new DateTimeAdapter(dateData);
-        DateTimeAdapter adapterTime = new DateTimeAdapter(timeData);
-        recyclerViewDate.setAdapter(adapterDate);
-        recyclerViewTime.setAdapter(adapterTime);
 
         //Set Event for btn Back
         btnBack.setOnClickListener(new View.OnClickListener() {
@@ -125,7 +138,7 @@ public class BookTicketActivity extends AppCompatActivity {
                 }
                 intent.setClass(BookTicketActivity.this, PaymentActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                Ticket ticket = new Ticket(movieTitle, imageUrl, dateSelected, timeSelected, room, price, listSeatSelected);
+                Ticket ticket = new Ticket(movieTitle, imageUrl, dateSelected, timeSelected, roomId, price, listSeatSelected);
                 intent.putExtra("ticket", ticket);
                 startActivity(intent);
             }
@@ -140,10 +153,47 @@ public class BookTicketActivity extends AppCompatActivity {
                     movieTitle = data.get("title").toString();
                     price = Double.parseDouble(data.get("price").toString());
                     imageUrl = data.get("imageUrl").toString();
+
                     ArrayList<HashMap> roomData = (ArrayList<HashMap>) data.get("rooms");
+                    ArrayList<Timestamp> timeFrameData = null;
+                    assert roomData != null;
                     for (HashMap room : roomData) {
-                        Log.d("triet-room", room.get("name").toString());
+                        if (room.get("name").toString().equals(roomId)) {
+                            timeFrameData = (ArrayList<Timestamp>) room.get("timeFrame");
+                            break;
+                        }
                     }
+                    for (Timestamp time : timeFrameData) {
+                        Date datetime = time.toDate();
+                        timeFrame.add(datetime);
+                    }
+
+//                    String pattern = "dd/MM HH:mm";
+//                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+                    for (Date date : timeFrame) {
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.setTime(date);
+
+                        int day = calendar.get(Calendar.DAY_OF_MONTH);
+                        int month = calendar.get(Calendar.MONTH) + 1;
+                        int hours = calendar.get(Calendar.HOUR_OF_DAY);
+                        int minutes = calendar.get(Calendar.MINUTE);
+
+                        String datetime = String.format("%02d/%02d", day, month);
+                        String time = String.format("%02d:%02d", hours, minutes);
+
+                        Log.d("timeFrameData", datetime + " " + time);
+                        if (dateMap.get(datetime) == null) {
+                            dateMap.put(datetime, new ArrayList<String>());
+                            dateData.add(new MyDateTimeData(datetime));
+                        }
+                        dateMap.get(datetime).add(time);
+                    }
+
+                    adapterDate = new DateTimeAdapter(dateData);
+                    adapterTime = new DateTimeAdapter(timeData);
+                    recyclerViewDate.setAdapter(adapterDate);
+                    recyclerViewTime.setAdapter(adapterTime);
 
                     int hours = Integer.parseInt(data.get("duration").toString()) / 60;
                     int minutes = Integer.parseInt(data.get("duration").toString()) % 60;
@@ -155,7 +205,7 @@ public class BookTicketActivity extends AppCompatActivity {
                     strCategories = strCategories.substring(0, strCategories.length() - 2);
                     lblTitle.setText(movieTitle);
                     lblTag.setText(strCategories);
-                    lblRoomAndDuration.setText(room + " - " + duration);
+                    lblRoomAndDuration.setText(roomId + " - " + duration);
                 }
             }
         });

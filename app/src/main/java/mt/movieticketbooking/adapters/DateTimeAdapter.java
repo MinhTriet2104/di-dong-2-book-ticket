@@ -10,6 +10,7 @@ import android.widget.ToggleButton;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.Vector;
 
 import mt.movieticketbooking.BookTicketActivity;
@@ -59,6 +60,13 @@ public class DateTimeAdapter extends RecyclerView.Adapter<DateTimeAdapter.MyView
                 myDateTimeData.selected = true;
                 if (myDateTimeData.text.indexOf("/") != -1) {
                     BookTicketActivity.dateSelected = myDateTimeData.text;
+
+                    BookTicketActivity.timeData.clear();
+                    for (String time : BookTicketActivity.dateMap.get(BookTicketActivity.dateSelected)) {
+                        BookTicketActivity.timeData.add(new MyDateTimeData(time));
+                        BookTicketActivity.adapterTime = new DateTimeAdapter(BookTicketActivity.timeData);
+                        BookTicketActivity.recyclerViewTime.setAdapter(BookTicketActivity.adapterTime);
+                    }
                 } else {
                     BookTicketActivity.timeSelected = myDateTimeData.text;
                 }
