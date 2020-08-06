@@ -46,7 +46,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.MyViewHolder> 
                     {
                         aRoom.selectedRoom = false;
                     }
-                    HomeBookTicketActivity.roomSelected = "";
+                    HomeBookTicketActivity.roomSelected = room.getRoomText();
                 }
                 else{
                     for (RoomModel aRoom : listRoom)

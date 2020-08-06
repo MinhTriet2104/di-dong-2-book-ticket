@@ -3,7 +3,6 @@ package mt.movieticketbooking.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -69,7 +68,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
         TextView lblTitle, lblDate, lblDuration;
         EditText edtRating, edtType, edtAge;
         ImageView imgMovie;
-        Button btnBuyTicket;
         public MyViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
             lblTitle = itemView.findViewById(R.id.lblTitleMovies);
@@ -92,19 +90,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
                     }
                 }
             });
-//            itemView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    if (listener != null)
-//                    {
-//                        int position = getAdapterPosition();
-//                        if (position != RecyclerView.NO_POSITION)
-//                        {
-//                            listener.onItemClick(position);
-//                        }
-//                    }
-//                }
-//            });
         }
     }
 }

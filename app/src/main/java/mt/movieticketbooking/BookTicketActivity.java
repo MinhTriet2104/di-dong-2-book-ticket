@@ -60,14 +60,15 @@ public class BookTicketActivity extends AppCompatActivity {
     private TextView lblTitle;
     private TextView lblTag;
     private TextView lblRoomAndDuration;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Triet layout
         setContentView(R.layout.book_ticket_layout);
-        final Intent intent = getIntent();
-
+        intent = getIntent();
+        Log.d("activity-create", "Create");
         if (intent.hasExtra("room") && intent.hasExtra("movieId")) {
             roomId = intent.getStringExtra("room");
             movieId = intent.getStringExtra("movieId");
@@ -112,39 +113,14 @@ public class BookTicketActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 intent.setClass(BookTicketActivity.this, HomeBookTicketActivity.class);
-                finish();
-                startActivity(intent);
-            }
-        });
-
-        btnBuyNow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // return condition
-                if (listSeatSelected.size() == 0) {
-                    Toast.makeText(BookTicketActivity.this, "Please Select Your Seat!", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                if (dateSelected.equals("")) {
-                    Toast.makeText(BookTicketActivity.this, "Please Select a Date!", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                if (timeSelected.equals("")) {
-                    Toast.makeText(BookTicketActivity.this, "Please Select a Time!", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                intent.setClass(BookTicketActivity.this, PaymentActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                Ticket ticket = new Ticket(movieTitle, imageUrl, dateSelected, timeSelected, roomId, price, listSeatSelected);
-                intent.putExtra("ticket", ticket);
                 startActivity(intent);
+                finish();
             }
         });
-}
 
-    @Override
-    protected void onResume() {
-        super.onResume();
+
+
         nDocRefMovie.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -212,6 +188,37 @@ public class BookTicketActivity extends AppCompatActivity {
                     lblTag.setText(strCategories);
                     lblRoomAndDuration.setText(roomId + " - " + duration);
                 }
+            }
+        });
+}
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        btnBuyNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // return condition
+                if (listSeatSelected.size() == 0) {
+                    Toast.makeText(BookTicketActivity.this, "Please Select Your Seat!", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (dateSelected.equals("")) {
+                    Toast.makeText(BookTicketActivity.this, "Please Select a Date!", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (timeSelected.equals("")) {
+                    Toast.makeText(BookTicketActivity.this, "Please Select a Time!", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                intent = new Intent(BookTicketActivity.this, PaymentActivity.class);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                Ticket ticket = new Ticket(movieTitle, imageUrl, dateSelected, timeSelected, roomId, price, listSeatSelected);
+                Log.d("ticket-123456", ticket.getTicketDate());
+                if (intent.hasExtra("ticket")) intent.removeExtra("ticket");
+                Log.d("ticket-123456", String.valueOf(intent.hasExtra("ticket")));
+                intent.putExtra("ticket", ticket);
+                startActivity(intent);
             }
         });
     }

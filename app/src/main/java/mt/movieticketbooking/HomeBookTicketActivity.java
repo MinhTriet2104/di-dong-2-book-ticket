@@ -91,7 +91,7 @@ public class HomeBookTicketActivity extends AppCompatActivity {
                         roomData = (ArrayList<HashMap>) document.getData().get("rooms");
                         if(roomData != null){
                             for(HashMap room : roomData){
-                                listRoom.add(new RoomModel(room.get("name").toString()));
+                                listRoom.add(new RoomModel(room.get("name").toString(), movieID));
                                 Log.d("getRoom",room.get("name").toString());
                             }
                         }
@@ -101,16 +101,16 @@ public class HomeBookTicketActivity extends AppCompatActivity {
                     movieAdapter = new MovieAdapter(listMovies);
                     recyclerView.setAdapter(movieAdapter);
 
-                    movieAdapter.setOnItemClickListener(new MovieAdapter.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(int position) {
-                            intent.putExtra("movieId", listMovies.get(position).getMovieId());
-                            intent.putExtra("room", roomSelected);
-                            showChooseRoomDialog();
-                            Picasso.get().load(listMovies.get(position).getImageUrl()).into(imgChooseRoom);
-//                            Toast.makeText(HomeBookTicketActivity.this, "ID =" + listMovies.get(position).getMovieId(),Toast.LENGTH_SHORT).show();
-                        }
-                    });
+//                    movieAdapter.setOnItemClickListener(new MovieAdapter.OnItemClickListener() {
+//                        @Override
+//                        public void onItemClick(int position) {
+//                            intent.putExtra("movieId", listMovies.get(position).getMovieId());
+//                            intent.putExtra("room", roomSelected);
+//                            showChooseRoomDialog();
+//                            Picasso.get().load(listMovies.get(position).getImageUrl()).into(imgChooseRoom);
+////                            Toast.makeText(HomeBookTicketActivity.this, "ID =" + listMovies.get(position).getMovieId(),Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
                 } else {
                     Log.w("noGet", "Error getting documents.", task.getException());
                 }
@@ -121,8 +121,6 @@ public class HomeBookTicketActivity extends AppCompatActivity {
             public void onClick(View v) {
                     intent.setClass(HomeBookTicketActivity.this, BookTicketActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                    intent.putExtra("movieId", listMovies.get(lastPosition).getMovieId());
-                    intent.putExtra("room", roomSelected);
                     showChooseRoomDialog();
                     Picasso.get().load(listMovies.get(lastPosition).getImageUrl()).into(imgChooseRoom);
                     Toast.makeText(HomeBookTicketActivity.this, roomSelected,Toast.LENGTH_SHORT).show();
@@ -139,6 +137,8 @@ public class HomeBookTicketActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(!roomSelected.equals("")){
+                    intent.putExtra("movieId", listMovies.get(lastPosition).getMovieId());
+                    intent.putExtra("room", roomSelected);
                     startActivity(intent);
                     bottomSheetDialog.dismiss();
                 }
@@ -156,5 +156,27 @@ public class HomeBookTicketActivity extends AppCompatActivity {
         roomRecyclerView.setAdapter(roomAdapter);
         bottomSheetDialog.setContentView(view);
         bottomSheetDialog.show();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        btnBuyTicket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent.setClass(HomeBookTicketActivity.this, BookTicketActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                showChooseRoomDialog();
+                Picasso.get().load(listMovies.get(lastPosition).getImageUrl()).into(imgChooseRoom);
+                Toast.makeText(HomeBookTicketActivity.this, roomSelected,Toast.LENGTH_SHORT).show();
+//                Toast.makeText(HomeBookTicketActivity.this, "ID =" + listMovies.get(lastPosition).getMovieId(),Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        roomSelected = "";
     }
 }
