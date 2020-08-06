@@ -126,7 +126,7 @@ public class ChoosePaymentMethodActivity extends AppCompatActivity {
                 Log.d("triet-debug", ticketDoc.toString());
 
                 if(payType == 0){
-                    Toast.makeText(ChoosePaymentMethodActivity.this, "Pay type 0", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(ChoosePaymentMethodActivity.this, "Pay type 0", Toast.LENGTH_SHORT).show();
                     // Add a new ticket document
                     db.collection("tickets")
                             .add(ticketDoc)
@@ -135,7 +135,7 @@ public class ChoosePaymentMethodActivity extends AppCompatActivity {
                                 public void onSuccess(DocumentReference documentReference) {
                                     // get id of ticket document
                                     Log.d("triet-debug", "ticket ID: " + documentReference.getId());
-                                    Toast.makeText(ChoosePaymentMethodActivity.this, "ticket ID: " + documentReference.getId(), Toast.LENGTH_LONG).show();
+                                    Toast.makeText(ChoosePaymentMethodActivity.this, "Payment advance ticket done! Your Ticket ID: " + documentReference.getId(), Toast.LENGTH_LONG).show();
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {
@@ -147,7 +147,7 @@ public class ChoosePaymentMethodActivity extends AppCompatActivity {
                 }else{
                     if(!String.valueOf(edtAddressCustomer.getText()).trim().isEmpty()){
                         ticketDoc.put("customerAddress", String.valueOf(edtAddressCustomer.getText()).trim());
-                        Toast.makeText(ChoosePaymentMethodActivity.this, "Pay type 1 accept", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(ChoosePaymentMethodActivity.this, "Pay type 1 accept", Toast.LENGTH_SHORT).show();
                         // Payment success add a new ticket document
                         db.collection("tickets")
                                 .add(ticketDoc)
@@ -156,7 +156,7 @@ public class ChoosePaymentMethodActivity extends AppCompatActivity {
                                     public void onSuccess(DocumentReference documentReference) {
                                         // get id of ticket document
                                         Log.d("triet-debug", "ticket ID: " + documentReference.getId());
-                                        Toast.makeText(ChoosePaymentMethodActivity.this, "ticket ID: " + documentReference.getId(), Toast.LENGTH_LONG).show();
+                                        Toast.makeText(ChoosePaymentMethodActivity.this, "Payment ship ticket done! Your ticket ID: " + documentReference.getId(), Toast.LENGTH_LONG).show();
                                     }
                                 })
                                 .addOnFailureListener(new OnFailureListener() {
@@ -167,10 +167,13 @@ public class ChoosePaymentMethodActivity extends AppCompatActivity {
                                 });
                     }
                     else{
-                        Toast.makeText(ChoosePaymentMethodActivity.this, "Pay type 1 fail", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ChoosePaymentMethodActivity.this, "Please enter your full address information!", Toast.LENGTH_SHORT).show();
                     }
                 }
-
+                intent.setClass(ChoosePaymentMethodActivity.this, HomeBookTicketActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
             }
         });
 
