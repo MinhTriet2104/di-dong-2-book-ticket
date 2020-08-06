@@ -17,7 +17,7 @@
             android:id="@+id/imgMovie"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/avenger_movies"/>
+            android:src="@drawable/loading_img"/>
     </LinearLayout>
 
     <LinearLayout

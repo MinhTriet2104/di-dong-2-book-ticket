@@ -73,15 +73,6 @@ public class ChoosePaymentMethodActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final Intent intent = getIntent();
-        // Payment layout
-        setContentView(R.layout.choose_payment_method_layout);
-        // Get data from BookTicketActivity
-        bundle = intent.getExtras();
-        if(bundle != null){
-            ticket = new Gson().fromJson(bundle.getString(PaymentActivity.TICKET_CODE_REQUEST), Ticket.class);
-            customer = new Gson().fromJson(bundle.getString(PaymentActivity.CUSTOMER_CODE_REQUEST), Customer.class);
-        }
 
         //Setup view process
         ckbPayment1 = (CheckBox) findViewById(R.id.ckbPayment1);
@@ -99,6 +90,23 @@ public class ChoosePaymentMethodActivity extends AppCompatActivity {
         //Btn complete payment
         btnBackPayment = (Button) findViewById(R.id.btnBackPayment);
         btnConfirmPayment = (Button) findViewById(R.id.btnConfirmPayment);
+
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        final Intent intent = getIntent();
+        // Payment layout
+        setContentView(R.layout.choose_payment_method_layout);
+        // Get data from BookTicketActivity
+        bundle = intent.getExtras();
+        if(bundle != null){
+            ticket = new Gson().fromJson(bundle.getString(PaymentActivity.TICKET_CODE_REQUEST), Ticket.class);
+            customer = new Gson().fromJson(bundle.getString(PaymentActivity.CUSTOMER_CODE_REQUEST), Customer.class);
+        }
 
         //Set data
         bindTicket();
@@ -215,8 +223,6 @@ public class ChoosePaymentMethodActivity extends AppCompatActivity {
                 getPaymentMethod(payType);
             }
         });
-
-
     }
 
     private void bindTicket(){

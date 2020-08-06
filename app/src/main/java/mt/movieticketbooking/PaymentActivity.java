@@ -61,12 +61,6 @@ public class PaymentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         // Payment layout
         setContentView(R.layout.payment_layout);
-
-        final Intent intent = getIntent();
-        // Get data from BookTicketActivity
-        ticket = (Ticket) intent.getSerializableExtra(TICKET_CODE_REQUEST);
-        //Log.d("ticket", ticket.getMovieName());
-
         //Setup view ticket
         imgMovie = (ImageView) findViewById(R.id.imgMovie);
         txtTicketName = (TextView) findViewById(R.id.txtTicketName);
@@ -84,7 +78,16 @@ public class PaymentActivity extends AppCompatActivity {
         //Btn confirm
         btnConfirm = (Button) findViewById(R.id.btnConfirmTickets);
         btBackConfirm = (Button) findViewById(R.id.btnBackConfirm);
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        final Intent intent = getIntent();
+        // Get data from BookTicketActivity
+        ticket = (Ticket) intent.getSerializableExtra(TICKET_CODE_REQUEST);
+        //Log.d("ticket", ticket.getMovieName());
         //Set data
         setupTicket();
 
@@ -150,5 +153,4 @@ public class PaymentActivity extends AppCompatActivity {
         txtTotalPrice.setText(formatterPrice.format(ticket.getTotalPrice()) + " vnđ");
         txtTicketOrderTime.setText("Order time: " + formatterDate.format(ticket.getOrderTime()));
     }
-
 }
