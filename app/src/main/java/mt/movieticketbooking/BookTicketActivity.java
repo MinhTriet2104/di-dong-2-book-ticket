@@ -21,8 +21,6 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -31,7 +29,6 @@ import java.util.Map;
 import java.util.Vector;
 
 import mt.movieticketbooking.adapters.DateTimeAdapter;
-import mt.movieticketbooking.models.Movie;
 import mt.movieticketbooking.models.MyDateTimeData;
 import mt.movieticketbooking.models.Ticket;
 
@@ -115,7 +112,7 @@ public class BookTicketActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 intent.setClass(BookTicketActivity.this, HomeBookTicketActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                finish();
                 startActivity(intent);
             }
         });
@@ -143,7 +140,11 @@ public class BookTicketActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+}
 
+    @Override
+    protected void onResume() {
+        super.onResume();
         nDocRefMovie.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -170,6 +171,11 @@ public class BookTicketActivity extends AppCompatActivity {
 
 //                    String pattern = "dd/MM HH:mm";
 //                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+                    dateMap.clear();
+                    dateData.clear();
+                    timeData.clear();
+                    dateSelected = "";
+                    timeSelected = "";
                     for (Date date : timeFrame) {
                         Calendar calendar = Calendar.getInstance();
                         calendar.setTime(date);
@@ -182,14 +188,13 @@ public class BookTicketActivity extends AppCompatActivity {
                         String datetime = String.format("%02d/%02d", day, month);
                         String time = String.format("%02d:%02d", hours, minutes);
 
-                        Log.d("timeFrameData", datetime + " " + time);
+//                        Log.d("timeFrameData", datetime + " " + time);
                         if (dateMap.get(datetime) == null) {
                             dateMap.put(datetime, new ArrayList<String>());
                             dateData.add(new MyDateTimeData(datetime));
                         }
                         dateMap.get(datetime).add(time);
                     }
-
                     adapterDate = new DateTimeAdapter(dateData);
                     adapterTime = new DateTimeAdapter(timeData);
                     recyclerViewDate.setAdapter(adapterDate);
