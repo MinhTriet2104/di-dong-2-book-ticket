@@ -63,6 +63,7 @@ public class DateTimeAdapter extends RecyclerView.Adapter<DateTimeAdapter.MyView
 
                     BookTicketActivity.timeData.clear();
                     for (String time : BookTicketActivity.dateMap.get(BookTicketActivity.dateSelected)) {
+                        BookTicketActivity.timeSelected = "";
                         BookTicketActivity.timeData.add(new MyDateTimeData(time));
                         BookTicketActivity.adapterTime = new DateTimeAdapter(BookTicketActivity.timeData);
                         BookTicketActivity.recyclerViewTime.setAdapter(BookTicketActivity.adapterTime);
